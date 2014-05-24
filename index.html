@@ -3,11 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Foundation | Welcome</title>
+    <title>cropimg.jquery.js by requtize</title>
     <link rel="stylesheet" href="foundation/css/foundation.css" />
+    <link rel="stylesheet" href="cropimg.css" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="font-awesome.min.css" />
-    <script src="foundation/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="foundation/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="cropimg.jquery.js"></script>
   </head>
   <body>
     <div class="row">
@@ -26,22 +29,51 @@
               <span>Download the Project ZIP</span>
               <small>from GitHub</small>
             </a>
-            <a href="#">
+            <!--<a href="#">
               <span class="icon icon-book"></span>
               <span>Show documentation</span>
               <small>by requtize</small>
             </a>
-            <a href="http://adambanaszkiewicz.pl">
+            <a href="#">
               <span class="icon icon-user"></span>
               <span>Go to Author’s website</span>
-              <small>adambanaszkiewicz.pl</small>
-            </a>
+              <small>.pl</small>
+            </a>-->
           </div>
         </div>
       </div>
       <div class="large-7 columns">
-        right
+        <div class="content">
+          <h2>How it Works?</h2>
+          <p>
+            Catch image inside the box and move it. You can also zoom in or zoom out the photo by the buttons on right side.
+          </p>
+          <p>
+            Black elements on image, can be used to shors zooming the image or move image to one of the corners, or center.
+          </p>
+          <img src="crop-img.jpg" alt="crop img" class="cropimg" />
+          <p class="image-copy">image taken from <a href="http://unsplash.com/" target="_blank">http://unsplash.com/</a></p>
+          <h2>Do i need anything else?</h2>
+          <p>
+            Yes. You need only include jQuery to your document in version 1.9+ or higher. You can find this <a href="http://jquery.com/download/" target="_blank">HERE</a>.
+          </p>
+          <h2>What about License?</h2>
+          <p>
+            This code is licensed under MIT License.
+          </p>
+        </div>
       </div>
     </div>
+    <footer>
+      <p>This project is maintained by <a href="https://github.com/requtize">requtize</a> &nbsp; - &nbsp; Hosted on GitHub Pages</p>
+    </footer>
+    <script>
+    $(document).ready(function() {
+      $('img.cropimg').cropimg({
+        resultWidth:600,
+        resultHeight:300
+      });
+    });
+    </script>
   <body>
 </html>

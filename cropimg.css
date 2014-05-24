@@ -1,0 +1,23 @@
+.ci-main {position:relative;max-width:100%;margin:0 auto;}
+.ci-main .ci-image-wrapper {margin:0px 30px 15px 0px;position:relative;overflow:hidden;outline:1px dotted #000;}
+.ci-main .ci-image-wrapper:hover {cursor:move;}
+.ci-main .ci-image-wrapper img {position:absolute;z-index:1;top:0px;left:0px;display:block !important;max-width:none !important;}
+.ci-main .ci-image-wrapper .ci-fixing-position {display:block;width:6px;height:6px;background-color:#000;position:absolute;z-index:2;}
+.ci-main .ci-image-wrapper .ci-fixing-position:hover {cursor:pointer;}
+.ci-main .ci-image-wrapper .ci-fixing-position.ci-fptl {top:0px;left:0px;}
+.ci-main .ci-image-wrapper .ci-fixing-position.ci-fptc {top:0px;left:50%;margin-left:-3px;}
+.ci-main .ci-image-wrapper .ci-fixing-position.ci-fptr {top:0px;right:0px;}
+.ci-main .ci-image-wrapper .ci-fixing-position.ci-fpcl {top:50%;left:0px;margin-top:-3px;}
+.ci-main .ci-image-wrapper .ci-fixing-position.ci-fpcc {top:50%;right:50%;margin-top:-3px;margin-left:-3px;border-radius:5px;}
+.ci-main .ci-image-wrapper .ci-fixing-position.ci-fpcr {top:50%;right:0px;margin-top:-3px;}
+.ci-main .ci-image-wrapper .ci-fixing-position.ci-fpbl {bottom:0px;left:0px;}
+.ci-main .ci-image-wrapper .ci-fixing-position.ci-fpbc {bottom:0px;left:50%;margin-left:-3px;}
+.ci-main .ci-image-wrapper .ci-fixing-position.ci-fpbr {bottom:0px;right:0px;}
+.ci-main .ci-image-wrapper .ci-fixing-size {display:block;background-color:#000;position:absolute;z-index:2;}
+.ci-main .ci-image-wrapper .ci-fixing-size:hover {cursor:pointer;}
+.ci-main .ci-image-wrapper .ci-fixing-size.ci-fsw {bottom:7px;left:50%;width:8px;height:3px;margin-left:-4px;}
+.ci-main .ci-image-wrapper .ci-fixing-size.ci-fsh {top:50%;left:7px;width:3px;height:8px;margin-top:-4px;}
+.ci-main .ci-tool {position:absolute;z-index:100;top:0px;right:0px;}
+.ci-main .ci-tool .ci-button {display:block;width:20px;height:20px;margin:0px 0px 5px 5px;color:#000;font-size:20px;}
+.ci-main .ci-tool .ci-button:hover {cursor:pointer;}
+.ci-image-loader {display:block;position:absolute;left:-9999px;top:-9999px;z-index:0;}
