@@ -1,7 +1,7 @@
 /**
- * Available for use under the [MIT License](http://en.wikipedia.org/wiki/MIT_License)
+ * Available for use under the MIT License (http://en.wikipedia.org/wiki/MIT_License)
  * 
- * Copyright (c) 2013 by Adam Banaszkiewicz, adambanaszkiewicz.pl
+ * Copyright (c) 2013 by Adam Banaszkiewicz
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,13 +22,8 @@
  * THE SOFTWARE.
  * 
  * @version 0.1.0
- * @date    2014.05.18
- * @author  Adam Banaszkiewicz adambanaszkiewicz.pl
- */
-/**
- * TODO:
- *   - Reset obrazka w kontenerze
- *   - Przycisk "Anuluj kadrowanie" pojawiający się tylko gdy user przesunie obrazek lub zmieni jego zoom.
+ * @date    2014.05.24
+ * @author  Adam Banaszkiewicz
  */
 (function($){
   $.fn.cropimg = function(options) {
@@ -72,6 +67,20 @@
       zoomDelay: 400,
       
       /**
+       * Klasa dodatkowa przycisku przybliżania.
+       * 
+       * @var string
+       */
+      zoomInBtnClass: 'icon-plus-sign-alt',
+      
+      /**
+       * Klasa dodatkowa przycisku oddalania.
+       * 
+       * @var string
+       */
+      zoomOutBtnClass: 'icon-minus-sign-alt',
+      
+      /**
        * Wywoływana podczas inicjacji pluginu.
        * 
        * @var function
@@ -84,10 +93,6 @@
        * @var function
        */
       onChange: function(w, h, x, y) {}
-      /**
-       * @TODO
-       
-      restrictedBounds: false*/
     }, options);
     
     /**
@@ -112,6 +117,12 @@
       return 1280;
     };
     
+    /**
+     * Przechowuje informacje, czy obrazek został już zmieniony, czy jeszcze
+     * nic user nie robił.
+     * 
+     * @var boolean
+     */
     document.CI_ALREADY_CHANGED = false;
     
     /**
@@ -199,8 +210,8 @@
        */ 
       drawZoomingButtons: function() {
         document.CI_MAIN_CONTAINER.find('.ci-tool.ci-zooming')
-          .append($('<div />', {'class':'ci-button ci-tool-zoomin'}))
-          .append($('<div />', {'class':'ci-button ci-tool-zoomout'}));
+          .append($('<div />', {'class':'ci-button ci-tool-zoomin '+options.zoomInBtnClass}))
+          .append($('<div />', {'class':'ci-button ci-tool-zoomout '+options.zoomOutBtnClass}));
       },
       /**
        * Rysuje buttony przesuwania zdjęcia do krawędzi i rogów kontenera.
@@ -327,6 +338,7 @@
         document.CI_MOVABLE.imagePosition.left = parseInt(document.CI_IMAGE.css('left').replace('px', ''));
         document.CI_MOVABLE.imagePosition.top  = parseInt(document.CI_IMAGE.css('top').replace('px', ''));
         
+        // Ustawiamy, że już było zmieniane
         document.CI_ALREADY_CHANGED = true;
         
         $('body')
@@ -377,6 +389,7 @@
        * @return void
        */
       eventMouseMove: function(e) {
+        // Ustawiamy, że już było zmieniane
         document.CI_ALREADY_CHANGED = true;
         
         // Obliczamy nowe pozycje i przesuwamy obrazek.
@@ -396,7 +409,7 @@
         });
         
         // Top center
-        document.CI_IMAGE_CONTAINER.find('.ci-fixing-position.ci-fptc').mouseup(function() {
+        document.CI_IMAGE_CONTAINER.find('.ci-fixing-position.ci-fptc').mouseup(function() {        
           var left = -((document.CI_IMAGE_DATA.width / 2) - (document.CI_IMAGE_CONTAINER_DATA.width / 2));
           document.CI_IMAGE.css({'top':'0px','left':left+'px'});
           document.CI_CROPPING_RESULT.update(left, 0);
@@ -472,49 +485,8 @@
          * @return object
          */
         calculatePosition: function(pageX, pageY) {
-          /*if(options.restrictedBounds)
-          {
-            return document.CI_MOVABLE.helper.fixPosition(
-              pageY - document.CI_MOVABLE.mousePositionStart.y + sizes.top,
-              pageX - document.CI_MOVABLE.mousePositionStart.x + sizes.left
-            );
-          }
-          else
-          { */
-            return {'top':pageY - document.CI_MOVABLE.mousePositionStart.y + document.CI_MOVABLE.imagePosition.top,'left':pageX - document.CI_MOVABLE.mousePositionStart.x + document.CI_MOVABLE.imagePosition.left};
-          //}
-        },
-        // Tymczasowe!
-        /*
-        fixPosition: function(top, left) {
-          if(top < -(document.CI_IMAGE.height() - options.resultHeight))
-            top = -(document.CI_IMAGE.height() - options.resultHeight);
-          
-          if(left < -(document.CI_IMAGE.width() - options.resultWidth))
-            left = -(document.CI_IMAGE.width() - options.resultWidth);
-            
-          if(top > 0)
-            top = 0;
-          
-          if(left > 0)
-            left = 0;
-          
-          return {'top':top,'left':left};
-        },
-        recalculatePositionInContainer: function() {
-          var elementsSizes = {
-            'cw':options.resultWidth,
-            'ch':options.resultHeight,
-            'it':parseInt(document.CI_IMAGE.css('top').replace('px', '')),
-            'il':parseInt(document.CI_IMAGE.css('left').replace('px', '')),
-            'iw':document.CI_IMAGE.width(),
-            'ih':document.CI_IMAGE.height()
-          };
-          
-          // TODO
-          // Jeśli obrazek zaczyna wychodzić z prawej krawędzi kontenera (nie mieści się)
-          //if(
-        }*/
+          return {'top':pageY - document.CI_MOVABLE.mousePositionStart.y + document.CI_MOVABLE.imagePosition.top,'left':pageX - document.CI_MOVABLE.mousePositionStart.x + document.CI_MOVABLE.imagePosition.left};
+        }
       }
     };
     
@@ -563,6 +535,10 @@
             document.CI_ZOOMING.eventMouseUp();
             document.CI_ZOOMING.canStopZoom = false;
             e.stopPropagation();
+          })
+          .click(function() {
+            document.CI_ZOOMING.canStopZoom = false;
+            document.CI_ZOOMING.eventMouseClick($(this).hasClass('ci-tool-zoomin') ? 'in' : 'out');
           });
         
         // Reset zoom
@@ -571,19 +547,52 @@
             document.CI_ZOOMING.stopZoom();
         });
         
-        // Dane obrazka
-        document.CI_IMAGE_DATA = {
-          // Oryginalne wymiary obrazka
-          originalWidth: document.CI_IMAGE.width(),
-          originalHeight: document.CI_IMAGE.height(),
-          // Aktualne wymiary obrazka
-          width: document.CI_IMAGE.width(),
-          height: document.CI_IMAGE.height(),
-          // Poporcje wymiarów obrazka względem oryginalnych
-          proportions: 1
-        };
+        /**
+         * Musimy pobrać wymiary obrazka, ale nie uda nam się to przed jego 
+         * załadowaniem, dlatego tworzymy jeszcze jeden obrazek w kontenerze,
+         * podpinamy pod niego zdarzenie, by po wywołaniu pobrało wymiary,
+         * i ładujemy go do kontenera. Po załadowaniu usuwamy z kontenera,
+         * by nie pozostawić śladów.                  
+         */                 
+        var loader = document.createElement('IMG');
+            loader.className = 'ci-image-loader';
+            loader.onload = function() {
+              // Dane obrazka
+              document.CI_IMAGE_DATA = {
+                // Oryginalne wymiary obrazka
+                originalWidth: document.CI_IMAGE.width(),
+                originalHeight: document.CI_IMAGE.height(),
+                // Aktualne wymiary obrazka
+                width: document.CI_IMAGE.width(),
+                height: document.CI_IMAGE.height(),
+                // Poporcje wymiarów obrazka względem oryginalnych
+                proportions: 1
+              };
+              
+              $('.ci-image-loader', document.CI_IMAGE_CONTAINER).remove();
+            };
+            loader.src = document.CI_IMAGE.attr('src');
+        
+        document.CI_IMAGE_CONTAINER.append(loader);
         
         document.CI_ZOOMING.bindFixingButtons();
+      },
+      /**
+       * Metoda przygotowuje metodę zoomowania w zależności od podanej wartości
+       * w parametrze type.
+       * 
+       * @param string type
+       * @return void         
+       */
+      prepareToZoom: function(type) {
+        // Ustawiamy, że już było zmieniane
+        document.CI_ALREADY_CHANGED = true;
+        
+        // Ustawiamy, że w interwale może być wykonywana funkcja zoomowania
+        document.CI_ZOOMING.allowedZoomingFromInterval = true;
+        
+        // Ustawiamy funkcję wywołującą funkcję zoomowania w zależności od typu
+        document.CI_ZOOMING.zoomFunction = function() {document.CI_ZOOMING.zoom(type);};
       },
       /**
        * Metoda rozpoczyna zmianę rozmiaru w zależności od podanego typu.
@@ -596,13 +605,10 @@
        * @return false
        */
       eventMouseDown: function(type) {
-        document.CI_ALREADY_CHANGED = true;
-        // Ustawiamy, że w interwale może być wykonywana funkcja zoomowania
-        document.CI_ZOOMING.allowedZoomingFromInterval = true;
+        // Przygotowujemy metodę do zoomowania
+        document.CI_ZOOMING.prepareToZoom(type);
         
-        // Ustawiamy funkcję wywołującą funkcję zoomowania w zależności od typu
-        document.CI_ZOOMING.zoomFunction = function() {document.CI_ZOOMING.zoom(type);};
-        
+        // Ustawiamy odliczanie na zoomowanie ciągłe
         document.CI_ZOOMING.interval = setInterval(function() {
           document.CI_ZOOMING.timesLeftToZoom = document.CI_ZOOMING.timesLeftToZoom - 10;
           
@@ -618,12 +624,24 @@
        * @return void
        */
       eventMouseUp: function() {
-        // Wykonujemy jeden raz funkcję zoomowania
-        document.CI_ZOOMING.zoomFunction();
-        
         document.CI_CROPPING_RESULT.update(undefined, undefined, options.resultWidth * parseFloat(document.CI_CROPPING_RESULT.cropPercent), options.resultHeight * parseFloat(document.CI_CROPPING_RESULT.cropPercent));
         
         document.CI_ZOOMING.stopZoom();
+      },
+      /**
+       * Zdarzenie pojedyńczego kliknięcia w przycisk. Jeśli tylko kliknie
+       * zoomujemy o jeden stopień.
+       * 
+       * @param string type
+       * @return void
+       */
+      eventMouseClick: function(type) {
+        // Zatrzymujemy to co było do tej pory
+        document.CI_ZOOMING.stopZoom();
+        // Przygotowujemy metodę do zoomowania
+        document.CI_ZOOMING.prepareToZoom(type);
+        // Wykonujemy jeden raz funkcję zoomowania
+        document.CI_ZOOMING.zoomFunction();
       },
       /**
        * Metoda resetuje i stopuje ZOOM.
@@ -776,24 +794,9 @@
      */
     document.CI_CROPPING_RESULT = {
       /**
-       * Przechowuje wartość proporcji domyślnych wymiarów rezultatu kadrowania
-       * do wymiarów po zmniejszeniu kontenera. Jeśli kontener ma wymiary większe
-       * niż strona, to zmniejszana jest jego wysokość proporcjonalnie oraz
-       * wyliczana jest proporcja zmniejszenia. Później z tej proporcji
-       * obliczany jest faktyczny rozmiar zaznaczonego kawałka zdjęcia.
-       * 
-       * @var integer
-       
-      containerProportions: 1,*/
-      /**
        * Współrzędne punktu zaczepienia zaznaczenia obrazka.
        */
       coordinates: { 'x' : 0, 'y' : 0 },
-      /**
-       * Wartość w procentach zmiany rozmiaru obrazka z jego oryginalnych
-       * wartości. Domyślnie: 1 == 100%
-       */    
-      //imageZoomPercent: 1,
       /**
        * Wartość w procentach zaznaczenia obrazka. Domyślnie: 1 == 100%
        */             
@@ -855,6 +858,7 @@
     };
     
     return this.each(function() {
+        
       // Obiekt obrazka
       document.CI_IMAGE = $(this);
       
