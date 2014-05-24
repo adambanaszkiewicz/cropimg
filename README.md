@@ -3,7 +3,7 @@
 Another cropping jQuery plugin
 
 For **downloads**, see:
-https://github.com/adbacz/cropimg/releases/
+https://github.com/requtize/cropimg/releases/
 
 ### Required
 What you need, to work with cropimg?
