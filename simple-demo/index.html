@@ -1,0 +1,25 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cropimg.jquery.js by requtize</title>
+    <link rel="stylesheet" type="text/css" href="cropimg.css" />
+    <link rel="stylesheet" type="text/css" href="font-awesome.min.css" />
+    <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="cropimg.jquery.js"></script>
+  </head>
+  <body>
+    <img src="cropimg.jpg" alt="crop img" class="cropimg" />
+    <script>
+    $(document).ready(function() {
+      $('img.cropimg').cropimg({
+        resultWidth:600,
+        resultHeight:300,
+        zoomInBtnClass:'icon-plus-sign-alt',
+        zoomOutBtnClass:'icon-minus-sign-alt'
+      });
+    });
+    </script>
+  <body>
+</html>
