@@ -4,19 +4,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>cropimg.jquery.js by requtize</title>
-    <link rel="stylesheet" href="foundation/css/foundation.css" />
-    <link rel="stylesheet" href="cropimg.css" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="font-awesome.min.css" />
-    <script type="text/javascript" src="foundation/js/vendor/modernizr.js"></script>
-    <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="cropimg.jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="web/css/foundation.css" />
+    <link rel="stylesheet" type="text/css" href="web/css/cropimg.css" />
+    <link rel="stylesheet" type="text/css" href="web/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="web/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:400,300,500,700" />
+    <script type="text/javascript" src="web/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="web/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="web/js/cropimg.jquery.js"></script>
   </head>
   <body>
     <div class="row">
       <div class="large-5 columns">
         <div class="side">
-          <h1>cropimg.jquery.js <small>v. 0.1.0</small></h1>
+          <h1><a href="http://requtize.github.io/cropimg/">cropimg.jquery.js <small>v. 0.1.0</small></a></h1>
           <p class="slogan">Another croping jQuery plugin.</p>
           <div class="big-buttons">
             <a href="https://github.com/requtize/cropimg">
@@ -29,12 +30,12 @@
               <span>Download the Project ZIP</span>
               <small>from GitHub</small>
             </a>
-            <!--<a href="#">
+            <a href="documentation.html">
               <span class="icon icon-book"></span>
               <span>Show documentation</span>
               <small>by requtize</small>
             </a>
-            <a href="#">
+            <!--<a href="#">
               <span class="icon icon-user"></span>
               <span>Go to Author’s website</span>
               <small>.pl</small>
@@ -49,13 +50,13 @@
             Catch image inside the box and move it. You can also zoom in or zoom out the photo by the buttons on right side.
           </p>
           <p>
-            Black elements on image, can be used to shors zooming the image or move image to one of the corners, or center.
+            Black elements on image, can be used to short zooming the image or move image to one of the corners, or center.
           </p>
-          <img src="crop-img.jpg" alt="crop img" class="cropimg" />
+          <img src="web/img/cropimg.jpg" alt="crop img" class="cropimg" />
           <p class="image-copy">image taken from <a href="http://unsplash.com/" target="_blank">http://unsplash.com/</a></p>
           <h2>Do i need anything else?</h2>
           <p>
-            Yes. You need only include jQuery to your document in version 1.9+ or higher. You can find this <a href="http://jquery.com/download/" target="_blank">HERE</a>.
+            Yes. You need only include jQuery to your document in version 1.9 or higher. You can find it <a href="http://jquery.com/download/" target="_blank">HERE</a>.
           </p>
           <h2>What about License?</h2>
           <p>
@@ -71,7 +72,9 @@
     $(document).ready(function() {
       $('img.cropimg').cropimg({
         resultWidth:600,
-        resultHeight:300
+        resultHeight:300,
+        zoomInBtnClass:'icon-plus-sign-alt',
+        zoomOutBtnClass:'icon-minus-sign-alt'
       });
     });
     </script>

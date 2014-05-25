@@ -1,0 +1,172 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cropimg.jquery.js by requtize</title>
+    <link rel="stylesheet" type="text/css" href="http://alexgorbatchev.com/pub/sh/current/styles/shCore.css" />
+    <link rel="stylesheet" type="text/css" href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" />
+    <link rel="stylesheet" type="text/css" href="web/css/foundation.css" />
+    <link rel="stylesheet" type="text/css" href="web/css/cropimg.css" />
+    <link rel="stylesheet" type="text/css" href="web/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="web/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,700,300italic" />
+    <script type="text/javascript" src="web/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="web/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="web/js/cropimg.jquery.js"></script>
+    <script type="text/javascript" src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js"></script>
+    <script type="text/javascript" src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js"></script>
+    <script type="text/javascript" src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushGroovy.js"></script>
+    <script language="javascript" type="text/javascript">
+    	SyntaxHighlighter.config.bloggerMode = true;
+    	SyntaxHighlighter.all();
+    </script>
+  </head>
+  <body>
+    <div class="row">
+      <div class="large-5 columns">
+        <div class="side">
+          <h1><a href="http://requtize.github.io/cropimg/">cropimg.jquery.js <small>v. 0.1.0</small></a></h1>
+          <p class="slogan">Another croping jQuery plugin.</p>
+          <div class="big-buttons">
+            <a href="http://requtize.github.io/cropimg/" class="obverse">
+              <span class="icon icon-chevron-left"></span>
+              <span>Go back to homepage</span>
+              <small>http://requtize.github.io/cropimg/</small>
+            </a>
+          </div>
+          <ul class="menu">
+            <li><a href="#doc-basic-usage">Basic usage</a></li>     
+            <li><a href="#doc-full-usage">Full usage</a></li>
+            <li><a href="#doc-options">Options</a>
+              <ul>
+                <li><a href="#doc-options-maxContainerWidth"><span class="icon-angle-right"></span> maxContainerWidth</a></li>
+                <li><a href="#doc-options-resultWidth"><span class="icon-angle-right"></span> resultWidth</a></li>
+                <li><a href="#doc-options-resultHeight"><span class="icon-angle-right"></span> resultHeight</a></li>
+                <li><a href="#doc-options-inputPrefix"><span class="icon-angle-right"></span> inputPrefix</a></li>
+                <li><a href="#doc-options-zoomDelay"><span class="icon-angle-right"></span> zoomDelay</a></li>
+                <li><a href="#doc-options-zoomInBtnClass"><span class="icon-angle-right"></span> zoomInBtnClass</a></li>
+                <li><a href="#doc-options-zoomOutBtnClass"><span class="icon-angle-right"></span> zoomOutBtnClass</a></li>
+                <li><a href="#doc-options-onInit"><span class="icon-angle-right"></span> onInit()</a></li>
+                <li><a href="#doc-options-onChange"><span class="icon-angle-right"></span> onChange()</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="large-7 columns">
+        <div class="content">
+          <h2 id="doc-basic-usage">Basic usage</h2>
+          <p>Include this files to Your HTML document:</p>
+          <pre class="brush: groovy">&lt;link rel="stylesheet" type="text/css" href="/cropimg/cropimg.css" /&gt;
+&lt;script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="/cropimg/cropimg.jquery.min.js"&gt;&lt;/script&gt;</pre>
+          <p>resultWidth and resultHeight are required options:</p>
+          <pre class="brush: javascript">$(document).ready(function() {
+    $('img.my-image').cropimg({
+    resultWidth:        300,
+    resultHeight:       200
+  });
+});</pre>
+          <p>If You want, add these four input into document - plugin update values of these inputs when user change cropped area.</p>
+          <pre class="brush: groovy">&lt;input type="hidden" name="x" value="" id="ci-x" /&gt;
+&lt;input type="hidden" name="y" value="" id="ci-y" /&gt;
+&lt;input type="hidden" name="w" value="" id="ci-w" /&gt;
+&lt;input type="hidden" name="h" value="" id="ci-h" /&gt;</pre>
+          <h2 id="doc-full-usage">Full usage</h2>
+          <p>Example of full usage of options.</p>
+          <pre class="brush: javascript">$(document).ready(function() {
+  $('img.my-image').cropimg({
+    maxContainerWidth:  200,
+    resultWidth:        300,
+    resultHeight:       200,
+    inputPrefix:        'ci-',
+    zoomDelay:          400,
+    zoomInBtnClass:     'icon-plus-sign-alt',
+    zoomOutBtnClass:    'icon-minus-sign-alt',
+    onInit: function() {
+      alert('cropimg init!');
+    },
+    onChange: function(w, h, x, y) {
+      alert('cropimg changed: w: '+w+', h: '+h+', x: '+x+', y: '+y);
+    }
+  });
+});</pre>
+          <h2 id="doc-options">Options</h2>
+          <div class="option">
+            <div class="option-pars"><span>type:</span> integer &nbsp; &nbsp; <span>default:</span> null</div>
+            <h3 id="doc-options-maxContainerWidth">maxContainerWidth</h3>
+            <p>Sets the maximum width of the image container. Dimensions of the crop will be calculated proportionately.</p>
+          </div>
+          <div class="option">
+            <div class="option-pars"><span>type:</span> integer &nbsp; &nbsp; <span>default:</span> 100</div>
+            <h3 id="doc-options-resultWidth">resultWidth</h3>
+            <p>Width of the cropped image.</p>
+          </div>
+          <div class="option">
+            <div class="option-pars"><span>type:</span> integer &nbsp; &nbsp; <span>default:</span> 100</div>
+            <h3 id="doc-options-resultHeight">resultHeight</h3>
+            <p>Height of the cropped image.</p>
+          </div>
+          <div class="option">
+            <div class="option-pars"><span>type:</span> string &nbsp; &nbsp; <span>default:</span> &#39;&#39;</div>
+            <h3 id="doc-options-inputPrefix">inputPrefix</h3>
+            <p>Prefix of the inputs, where plugin introduce values of cropping.</p>
+            <p>There are four inputs with values. Begin ID of each input is the prefix from the option, and next, in sequence:</p>
+            <ul>
+              <li>x - X position of the cropped image on the upper left pixel.</li>
+              <li>y - Y position of the cropped image on the upper left pixel.</li>
+              <li>w - the width of the cropped piece of the picture.</li>
+              <li>h - the height of the cropped piece of the picture.</li>
+            </ul>
+          </div>
+          <div class="option">
+            <div class="option-pars"><span>type:</span> integer &nbsp; &nbsp; <span>default:</span> 400</div>
+            <h3 id="doc-options-zoomDelay">zoomDelay</h3>
+            <p>The time between click and hold the button of zoom, and start of zooming.</p>
+          </div>
+          <div class="option">
+            <div class="option-pars"><span>type:</span> string &nbsp; &nbsp; <span>default:</span> &#39;&#39;</div>
+            <h3 id="doc-options-zoomInBtnClass">zoomInBtnClass</h3>
+            <p>Additional class added to the zoom in button.</p>
+          </div>
+          <div class="option">
+            <div class="option-pars"><span>type:</span> string &nbsp; &nbsp; <span>default:</span> &#39;&#39;</div>
+            <h3 id="doc-options-zoomOutBtnClass">zoomOutBtnClass</h3>
+            <p>Additional class added to the zoom out button.</p>
+          </div>
+          <div class="option">
+            <div class="option-pars"><span>type:</span> function &nbsp; &nbsp; <span>default:</span> function() {}</div>
+            <h3 id="doc-options-onInit">onInit</h3>
+            <p>This function is called after the initiation of the plugin. Takes no arguments.</p>
+          </div>
+          <div class="option">
+            <div class="option-pars"><span>type:</span> function &nbsp; &nbsp; <span>default:</span> function() {}</div>
+            <h3 id="doc-options-onChange">onChange</h3>
+            <p>This function is called when you change the cropped area of the image. The function takes parameters:</p>
+            <ul>
+              <li>x - X position of the cropped image on the upper left pixel.</li>
+              <li>y - Y position of the cropped image on the upper left pixel.</li>
+              <li>w - the width of the cropped piece of the picture.</li>
+              <li>h - the height of the cropped piece of the picture.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <p>This project is maintained by <a href="https://github.com/requtize">requtize</a> &nbsp; - &nbsp; Hosted on GitHub Pages</p>
+    </footer>
+    <script>
+
+    $(document).ready(function() {
+      $('img.cropimg').cropimg({
+        resultWidth:600,
+        resultHeight:300,
+        zoomInBtnClass:'icon-plus-sign-alt',
+        zoomOutBtnClass:'icon-minus-sign-alt'
+      });
+    });
+    </script>
+  <body>
+</html>

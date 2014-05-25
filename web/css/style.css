@@ -1,0 +1,47 @@
+body {background-color:#f7f7f7;font-family:'Ubuntu';text-shadow:1px 1px 0px #fff;color:#404040;}
+p,
+ul li {font-weight:300;line-height:1.4;font-size:14px;text-align:justify;}
+ul {margin-left:30px;}
+h1 {margin:0px 0px 5px 0px;padding:0px;font-size:28px;color:#404040;}
+h1 a {font-size:28px;color:#404040;display:block;}
+h1 small {display:block;margin:30px 50px 0px;float:right;font-size:15px;color:#898989;font-style:italic;}
+h2 {font-size:28px;color:#404040;font-weight:300;border-bottom:1px solid #cccccc;margin:40px 0px 10px 0px;}
+h3 {font-size:19px;color:#404040;font-weight:300;border-bottom:1px solid #cccccc;}
+.side {margin-top:52px;position:fixed;top:0px;}
+.side .slogan {color:#4b4949;font-size:15px;}
+.side .big-buttons {max-width:265px;margin-top:50px;}
+.side .big-buttons a {position:relative;display:block;margin-bottom:20px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;background-color:#dbdee4;padding:12px 14px;-webkit-transition:all 0.08s linear;-moz-transition:all 0.08s linear;-o-transition:all 0.08s linear;transition:all 0.08s linear;}
+.side .big-buttons a:hover {background-color:#D6D6D6;}
+.side .big-buttons a span {font-size:15px;color:#000d8f;display:block;margin-bottom:5px;}
+.side .big-buttons a small {display:block;font-size:12px;color:#4b4949;}
+.side .big-buttons a span.icon {position:absolute;top:9px;right:7px;z-index:1;font-size:38px;color:#4b4949;text-align:center;display:block;width:50px;}
+.side .big-buttons a.obverse {padding-left:51px;}
+.side .big-buttons a.obverse span.icon {left:0px;right:none;}
+.side ul.menu,
+.side ul.menu ul,
+.side ul.menu li {list-style:none;list-style-image:none;padding:0px;margin:0px;}
+.side ul.menu {max-width:265px;background-color:#dbdee4;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;}
+.side ul.menu li a {display:block;padding:4px 10px;color:#000d8f;border-bottom:1px solid #f2f2f2;-webkit-transition:all 0.08s linear;-moz-transition:all 0.08s linear;-o-transition:all 0.08s linear;transition:all 0.08s linear;}
+.side ul.menu li a:hover {background-color:#D6D6D6;}
+.side ul.menu > li > a {padding-left:10px;font-size:15px;}
+.side ul.menu > li > ul > li > a {padding-left:30px;font-size:12px;}
+.content {margin-top:52px;}
+.image-copy {margin:0px;padding:0px;text-align:center;font-size:12px;color:#ccc;font-style:italic;}
+.ci-main .ci-image-wrapper {margin:50px 30px 5px 30px;}
+.option .option-pars {float:right;font-size:14px;color:#000000;margin-top:5px;font-style:italic;}
+.option .option-pars span {font-style:normal;font-weight:bold;}
+footer {border-top:1px solid #cccccc;margin:40px 0px;padding:20px 0px;}
+footer p {color:#B5B5B5;font-size:12px;text-align:center;}
+pre {font-size:12px;}
+.syntaxhighlighter,
+.syntaxhighlighter .line.alt2 {background-color:transparent !important;}
+.syntaxhighlighter a,
+.syntaxhighlighter div,
+.syntaxhighlighter code,
+.syntaxhighlighter table,
+.syntaxhighlighter table td,
+.syntaxhighlighter table tr,
+.syntaxhighlighter table tbody,
+.syntaxhighlighter table thead,
+.syntaxhighlighter table caption,
+.syntaxhighlighter textarea {font-size:12px !important;}

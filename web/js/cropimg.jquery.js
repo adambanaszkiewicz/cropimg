@@ -71,14 +71,14 @@
        * 
        * @var string
        */
-      zoomInBtnClass: 'icon-plus-sign-alt',
+      zoomInBtnClass: '',
       
       /**
        * Klasa dodatkowa przycisku oddalania.
        * 
        * @var string
        */
-      zoomOutBtnClass: 'icon-minus-sign-alt',
+      zoomOutBtnClass: '',
       
       /**
        * Wywoływana podczas inicjacji pluginu.
