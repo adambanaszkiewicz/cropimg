@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  * 
  * @version 0.1.0
- * @date    2014.05.24
+ * @date    2014.06.01
  * @author  Adam Banaszkiewicz
  */
 (function($){
@@ -67,18 +67,116 @@
       zoomDelay: 400,
       
       /**
-       * Klasa dodatkowa przycisku przybliżania.
+       * krotność przybliżenia dla kółka myszki.
        * 
-       * @var string
+       * @var integer
        */
-      zoomInBtnClass: '',
+      mouseWheelZoomTimes: 10,
       
       /**
-       * Klasa dodatkowa przycisku oddalania.
+       * Czy pokazywać tooltipy na buttonach?
+       * 
+       * @var boolean
+       */
+      showBtnTips: true,
+      
+      /**
+       * Czas animacji pokazywania i ukrywania tooltipów.
+       * 
+       * @var integer
+       */
+      btnTipsFadeTime: 100,
+      
+      /**
+       * Treść tooltipa przycisku: przybliż.
        * 
        * @var string
        */
-      zoomOutBtnClass: '',
+      textBtnTipZoomIn: 'Zoom in',
+      
+      /**
+       * Treść tooltipa przycisku: oddal.
+       * 
+       * @var string
+       */
+      textBtnTipZoomOut: 'Zoom out',
+      
+      /**
+       * Treść tooltipa przycisku: dopasuj do szerokości.
+       * 
+       * @var string
+       */
+      textBtnTipRTW: 'Resize to container width',
+      
+      /**
+       * Treść tooltipa przycisku: dopasuj do wydokości.
+       * 
+       * @var string
+       */
+      textBtnTipRTH: 'Resize to container height',
+      
+      /**
+       * Treść tooltipa przycisku: przenieś w lewy górny róg.
+       * 
+       * @var string
+       */
+      textBtnTipFPTL: 'Move image to Top Left Corner',
+      
+      /**
+       * Treść tooltipa przycisku: przenieś w górę na środek.
+       * 
+       * @var string
+       */
+      textBtnTipFPTC: 'Move image to Top Center',
+      
+      /**
+       * Treść tooltipa przycisku: przenieś w prawy górny róg.
+       * 
+       * @var string
+       */
+      textBtnTipFPTR: 'Move image to Top Right Corner',
+      
+      /**
+       * Treść tooltipa przycisku: przenieś w lewo na środek.
+       * 
+       * @var string
+       */
+      textBtnTipFPCL: 'Move image to Center Left',
+      
+      /**
+       * Treść tooltipa przycisku: przenieś na sam środek kontenera.
+       * 
+       * @var string
+       */
+      textBtnTipFPCC: 'Move image to Center of container',
+      
+      /**
+       * Treść tooltipa przycisku: przenieś w prawo na środek.
+       * 
+       * @var string
+       */
+      textBtnTipFPCR: 'Move image to Center Right',
+      
+      /**
+       * Treść tooltipa przycisku: przenieś w dolny lewy róg.
+       * 
+       * @var string
+       */
+      textBtnTipFPBL: 'Move image to Bottom Left Corner',
+      
+      /**
+       * Treść tooltipa przycisku: przenieś w dolny róg na środek.
+       * 
+       * @var string
+       */
+      textBtnTipFPBC: 'Move image to Bottom Center',
+      
+      /**
+       * Treść tooltipa przycisku: przenieś w dolny prawy róg.
+       * 
+       * @var string
+       */
+      textBtnTipFPBR: 'Move image to Bottom Right Corner',
       
       /**
        * Wywoływana podczas inicjacji pluginu.
@@ -210,8 +308,8 @@
        */ 
       drawZoomingButtons: function() {
         document.CI_MAIN_CONTAINER.find('.ci-tool.ci-zooming')
-          .append($('<div />', {'class':'ci-button ci-tool-zoomin '+options.zoomInBtnClass}))
-          .append($('<div />', {'class':'ci-button ci-tool-zoomout '+options.zoomOutBtnClass}));
+          .append($('<a />', {'title':options.textBtnTipZoomIn,'href':'#','class':'ci-button ci-tool-zoomin'}).click(function(){return false;}))
+          .append($('<a />', {'title':options.textBtnTipZoomOut,'href':'#','class':'ci-button ci-tool-zoomout'}).click(function(){return false;}));
       },
       /**
        * Rysuje buttony przesuwania zdjęcia do krawędzi i rogów kontenera.
@@ -220,15 +318,15 @@
        */
       drawFixingPositionButtons: function() {
         document.CI_IMAGE_CONTAINER
-          .append($('<div />', {'class':'ci-fixing-position ci-fptl'}))
-          .append($('<div />', {'class':'ci-fixing-position ci-fptc'}))
-          .append($('<div />', {'class':'ci-fixing-position ci-fptr'}))
-          .append($('<div />', {'class':'ci-fixing-position ci-fpcl'}))
-          .append($('<div />', {'class':'ci-fixing-position ci-fpcc'}))
-          .append($('<div />', {'class':'ci-fixing-position ci-fpcr'}))
-          .append($('<div />', {'class':'ci-fixing-position ci-fpbl'}))
-          .append($('<div />', {'class':'ci-fixing-position ci-fpbc'}))
-          .append($('<div />', {'class':'ci-fixing-position ci-fpbr'}));
+          .append($('<a />', {'title':options.textBtnTipFPTL,'href':'#','class':'ci-fixing-position ci-fptl'}).click(function(){return false;}))
+          .append($('<a />', {'title':options.textBtnTipFPTC,'href':'#','class':'ci-fixing-position ci-fptc'}).click(function(){return false;}))
+          .append($('<a />', {'title':options.textBtnTipFPTR,'href':'#','class':'ci-fixing-position ci-fptr'}).click(function(){return false;}))
+          .append($('<a />', {'title':options.textBtnTipFPCL,'href':'#','class':'ci-fixing-position ci-fpcl'}).click(function(){return false;}))
+          .append($('<a />', {'title':options.textBtnTipFPCC,'href':'#','class':'ci-fixing-position ci-fpcc'}).click(function(){return false;}))
+          .append($('<a />', {'title':options.textBtnTipFPCR,'href':'#','class':'ci-fixing-position ci-fpcr'}).click(function(){return false;}))
+          .append($('<a />', {'title':options.textBtnTipFPBL,'href':'#','class':'ci-fixing-position ci-fpbl'}).click(function(){return false;}))
+          .append($('<a />', {'title':options.textBtnTipFPBC,'href':'#','class':'ci-fixing-position ci-fpbc'}).click(function(){return false;}))
+          .append($('<a />', {'title':options.textBtnTipFPBR,'href':'#','class':'ci-fixing-position ci-fpbr'}).click(function(){return false;}));
       },
       /**
        * Rysuje buttony zmiany rozmiarów zdjęcia względem kontenera.
@@ -236,9 +334,9 @@
        * @return void
        */
       drawFixingSizeButtons: function() {
-        document.CI_IMAGE_CONTAINER
-          .append($('<div />', {'class':'ci-fixing-size ci-fsw'}))
-          .append($('<div />', {'class':'ci-fixing-size ci-fsh'}));
+        document.CI_MAIN_CONTAINER.find('.ci-tool.ci-zooming')
+          .append($('<a />', {'title':options.textBtnTipRTW,'href':'#','class':'ci-fixing-size ci-fsw'}).click(function(){return false;}))
+          .append($('<a />', {'title':options.textBtnTipRTH,'href':'#','class':'ci-fixing-size ci-fsh'}).click(function(){return false;}));
       },
       onResize: function(e) {
         /**
@@ -278,6 +376,83 @@
           document.CI_ZOOMING.eventMouseUp();
         
         $('span#window-width').html(document.getWindowWidth());
+      }
+    };
+    
+    /**
+     * Obiekt z metodami do zarządzania tooltipami przycisków.
+     */
+    document.CI_BTNSTIPS = {
+      /**
+       * Przechowuje ID tooltipu, który aktualnie jest dodawany do BODY.
+       * 
+       * @var string
+       */
+      currentTipId: '',
+      /**
+       * Przechowuje ID tooltipu, który aktualnie jest już BODY, który można usunąć.
+       * 
+       * @var string
+       */
+      lastTipId: '',
+      /**
+       * Inicjacja tooltipów
+       * 
+       * @return void
+       */
+      init: function() {
+        // Tylko, jeśli tak wybrano.
+        if(options.showBtnTips == false)
+          return false;
+        
+        /**
+         * Szukamy wszystkie elementy, które posiadają atrybut title. Treść
+         * z TITLE wrzucamy do DATA-TXT i usuwamy TITLE a następnie
+         * podpinamy zdarzenia na hover.
+         */
+        $('[title]', document.CI_MAIN_CONTAINER).add($('[title]', document.CI_IMAGE_CONTAINER)).each(function() {
+          $(this).attr('data-txt', $(this).attr('title'))
+            .removeAttr('title')
+            .hover(document.CI_BTNSTIPS.show, document.CI_BTNSTIPS.hide);
+        });
+      },
+      /**
+       * Pokazuje tooltip. Podpinane na zdarzenie elementu mouseenter.
+       * 
+       * @return void
+       */
+      show: function() {
+        // Tworzymy nowe ID tooltipu
+        document.CI_BTNSTIPS.currentTipId = 'ci-tip-'+(new Date()).getTime();
+        
+        // Dodajemy Tooltip do body
+        $('body').append($('<span class="ci-tip" id="'+document.CI_BTNSTIPS.currentTipId+'">'+$(this).attr('data-txt')+'</span>').fadeTo(0, 0).fadeTo(options.btnTipsFadeTime, 1));
+        
+        // Pobieramy offset elementu, do którego należy tooltip
+        var elmOffset = $(this).offset(),
+            // Pobieramy przed chwilą dodany do BODY tooltip
+            tip       = $('body').find('.ci-tip#'+document.CI_BTNSTIPS.currentTipId);
+        
+        // Obliczamy pozycję nowego toltipa
+        tip.css({
+          'left': elmOffset.left - (tip.outerWidth() / 2) + ($(this).outerWidth() / 2),
+          'top' : elmOffset.top - (tip.outerHeight()) - (($(this).outerHeight() - 5) / 2)
+        });
+        
+        // Przepisujemy ID tooltipa z Aktualy na Ostatni
+        document.CI_BTNSTIPS.lastTipId = document.CI_BTNSTIPS.currentTipId;
+      },
+      /**
+       * Ukrywa a następnie usuwa tooltip. Dodatkowe zdarzenie pozwala
+       * ukryć element od razu, po najechaniu na niego, a nie czekać aż ukryje
+       * się on animacją fade. Podpinane na zdarzenie elementu mouseout.
+       * 
+       * @return void
+       */
+      hide: function() {
+        $('body').find('.ci-tip#'+document.CI_BTNSTIPS.lastTipId).hover(function() {$(this).remove();}, $.noop).fadeTo(options.btnTipsFadeTime, 0, function() {
+          $(this).remove();
+        });
       }
     };
     
@@ -576,6 +751,24 @@
         document.CI_IMAGE_CONTAINER.append(loader);
         
         document.CI_ZOOMING.bindFixingButtons();
+        
+        /**
+         * Jeśli jest skrypt mousewheel to podpinamy zoomowanie za pomocą
+         * kółka myszki.
+         */
+        if(typeof document.CI_MAIN_CONTAINER.mousewheel == 'function')
+        {
+          document.CI_MAIN_CONTAINER.mousewheel(function(e) {
+            var type = e.deltaY == 1 ? 'in' : 'out';
+                        
+            for(var i = 0; i < options.mouseWheelZoomTimes; i++)
+              document.CI_ZOOMING.zoom(type);
+            
+            e.stopPropagation();
+            e.preventDefault();
+            return false;
+          });
+        }
       },
       /**
        * Metoda przygotowuje metodę zoomowania w zależności od podanej wartości
@@ -705,7 +898,7 @@
        */
       bindFixingButtons: function() {
         // Szerokość kontenera
-        document.CI_IMAGE_CONTAINER.find('.ci-fixing-size.ci-fsw').click(function() {
+        document.CI_MAIN_CONTAINER.find('.ci-fixing-size.ci-fsw').click(function() {
           var proportions = document.CI_IMAGE_CONTAINER.width() / document.CI_IMAGE_DATA.originalWidth;
           var height      = Math.ceil(document.CI_IMAGE_DATA.originalHeight * proportions);
           
@@ -726,7 +919,7 @@
         });
         
         // Wysokość kontenera
-        document.CI_IMAGE_CONTAINER.find('.ci-fixing-size.ci-fsh').click(function() {
+        document.CI_MAIN_CONTAINER.find('.ci-fixing-size.ci-fsh').click(function() {
           var proportions = document.CI_IMAGE_CONTAINER.height() / document.CI_IMAGE_DATA.originalHeight;
           var width       = Math.ceil(document.CI_IMAGE_DATA.originalWidth * proportions);
           
@@ -870,6 +1063,9 @@
       
       // Inicjujemy zoomowanie
       document.CI_ZOOMING.init();
+      
+      // Inicjujemy tooltipy dla buttonów
+      document.CI_BTNSTIPS.init();
       
       $(window).trigger('resize');
       

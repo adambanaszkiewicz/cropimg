@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:400%2C300%2C500%2C700" />
     <script type="text/javascript" src="web/js/vendor/modernizr.js"></script>
     <script type="text/javascript" src="web/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="web/js/jquery.mousewheel.js"></script>
     <script type="text/javascript" src="web/js/cropimg.jquery.js"></script>
   </head>
   <body>
@@ -72,9 +73,7 @@
     $(document).ready(function() {
       $('img.cropimg').cropimg({
         resultWidth:600,
-        resultHeight:300,
-        zoomInBtnClass:'icon-plus-sign-alt',
-        zoomOutBtnClass:'icon-minus-sign-alt'
+        resultHeight:300
       });
     });
     </script>
