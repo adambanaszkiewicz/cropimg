@@ -23,5 +23,5 @@
 .ci-main .ci-tool .ci-fixing-size.ci-fsw {background-position:-42px 0px;}
 .ci-main .ci-tool .ci-fixing-size.ci-fsh {background-position:-63px 0px;}
 .ci-image-loader {display:block;position:absolute;left:-9999px;top:-9999px;z-index:0;}
-.ci-tip {position:absolute;z-index:999;left:0px;top:0px;width:auto;max-width:180px;text-align:center;color:#fff;background:#000;line-height:1.3;font-size:12px;text-shadow:none;padding:4px 8px 5px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;}
+.ci-tip {position:absolute;z-index:999;left:0px;top:0px;width:auto;color:#fff;background:#000;line-height:1.3;font-size:12px;text-shadow:none;padding:4px 8px 5px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;}
 .ci-tip:after {content:"";display:block;width:0;height:0;border:solid 5px;border-color:black transparent transparent transparent;margin-left:-5px;position:absolute;left:50%;bottom:-10px;}
