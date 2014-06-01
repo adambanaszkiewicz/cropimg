@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="cropimg.css" />
     <link rel="stylesheet" type="text/css" href="font-awesome.min.css" />
     <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="jquery.mousewheel.js"></script>
     <script type="text/javascript" src="cropimg.jquery.js"></script>
   </head>
   <body>
@@ -15,9 +16,7 @@
     $(document).ready(function() {
       $('img.cropimg').cropimg({
         resultWidth:600,
-        resultHeight:300,
-        zoomInBtnClass:'icon-plus-sign-alt',
-        zoomOutBtnClass:'icon-minus-sign-alt'
+        resultHeight:300
       });
     });
     </script>
