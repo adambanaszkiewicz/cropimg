@@ -26,7 +26,7 @@
     <div class="row">
       <div class="large-5 columns">
         <div class="side">
-          <h1><a href="http://requtize.github.io/cropimg/">cropimg.jquery.js <small>v. 0.1.0</small></a></h1>
+          <h1><a href="http://requtize.github.io/cropimg/">cropimg.jquery.js <small>v. 0.1.1</small></a></h1>
           <p class="slogan">Another croping jQuery plugin.</p>
           <div class="big-buttons">
             <a href="http://requtize.github.io/cropimg/" class="obverse">
@@ -45,12 +45,18 @@
                 <li><a href="#doc-options-resultHeight"><span class="icon-angle-right"></span> resultHeight</a></li>
                 <li><a href="#doc-options-inputPrefix"><span class="icon-angle-right"></span> inputPrefix</a></li>
                 <li><a href="#doc-options-zoomDelay"><span class="icon-angle-right"></span> zoomDelay</a></li>
-                <li><a href="#doc-options-zoomInBtnClass"><span class="icon-angle-right"></span> zoomInBtnClass</a></li>
-                <li><a href="#doc-options-zoomOutBtnClass"><span class="icon-angle-right"></span> zoomOutBtnClass</a></li>
-                <li><a href="#doc-options-onInit"><span class="icon-angle-right"></span> onInit()</a></li>
-                <li><a href="#doc-options-onChange"><span class="icon-angle-right"></span> onChange()</a></li>
+                <li><a href="#doc-options-mouseWheelZoomTimes"><span class="icon-angle-right"></span> mouseWheelZoomTimes</a></li>
+                <li><a href="#doc-options-showBtnTips"><span class="icon-angle-right"></span> showBtnTips</a></li>
+                <li><a href="#doc-options-btnTipsFadeTime"><span class="icon-angle-right"></span> btnTipsFadeTime</a></li>
               </ul>
             </li>
+            <li><a href="#doc-methods">Methods</a>
+              <ul>
+                <li><a href="#doc-methods-onInit"><span class="icon-angle-right"></span> onInit()</a></li>
+                <li><a href="#doc-methods-onChange"><span class="icon-angle-right"></span> onChange()</a></li>
+              </ul>
+            </li>   
+            <li><a href="#doc-translate-options">Translate options</a></li>
           </ul>
         </div>
       </div>
@@ -82,8 +88,22 @@
     resultHeight:       200,
     inputPrefix:        'ci-',
     zoomDelay:          400,
-    zoomInBtnClass:     'icon-plus-sign-alt',
-    zoomOutBtnClass:    'icon-minus-sign-alt',
+    mouseWheelZoomTimes:10,
+    showBtnTips:        true,
+    btnTipsFadeTime:    100,
+    textBtnTipZoomIn:   'Zoom in',
+    textBtnTipZoomOut:  'Zoom out',
+    textBtnTipRTW:      'Resize to container width',
+    textBtnTipRTH:      'Resize to container height',
+    textBtnTipFPTL:     'Move image to Top Left Corner',
+    textBtnTipFPTC:     'Move image to Top Center',
+    textBtnTipFPTR:     'Move image to Top Right Corner',
+    textBtnTipFPCL:     'Move image to Center Left',
+    textBtnTipFPCC:     'Move image to Center of container',
+    textBtnTipFPCR:     'Move image to Center Right',
+    textBtnTipFPBL:     'Move image to Bottom Left Corner',
+    textBtnTipFPBC:     'Move image to Bottom Center',
+    textBtnTipFPBR:     'Move image to Bottom Right Corner',
     onInit: function() {
       alert('cropimg init!');
     },
@@ -126,23 +146,31 @@
             <p>The time between click and hold the button of zoom, and start of zooming.</p>
           </div>
           <div class="option">
-            <div class="option-pars"><span>type:</span> string &nbsp; &nbsp; <span>default:</span> &#39;&#39;</div>
-            <h3 id="doc-options-zoomInBtnClass">zoomInBtnClass</h3>
-            <p>Additional class added to the zoom in button.</p>
+            <div class="option-pars"><span>type:</span> integer &nbsp; &nbsp; <span>default:</span> 10</div>
+            <h3 id="doc-options-mouseWheelZoomTimes">mouseWheelZoomTimes</h3>
+            <p>Define count of clicks on one of zooming buttons (in or out), when user scroll on zooming area.</p>
+            <p>Example: one mouse scroll = 10 clicks on Zoom in button.</p>
+            <p>Work only if <a href="https://github.com/brandonaaron/jquery-mousewheel" target="_blank">jquery.mousewheel.js</a> script is included.</p>
           </div>
           <div class="option">
-            <div class="option-pars"><span>type:</span> string &nbsp; &nbsp; <span>default:</span> &#39;&#39;</div>
-            <h3 id="doc-options-zoomOutBtnClass">zoomOutBtnClass</h3>
-            <p>Additional class added to the zoom out button.</p>
+            <div class="option-pars"><span>type:</span> boolean &nbsp; &nbsp; <span>default:</span> true</div>
+            <h3 id="doc-options-showBtnTips">showBtnTips</h3>
+            <p>If true, buttons tooltips will be showed on hover.</p>
           </div>
+          <div class="option">
+            <div class="option-pars"><span>type:</span> integer &nbsp; &nbsp; <span>default:</span> 100</div>
+            <h3 id="doc-options-btnTipsFadeTime">btnTipsFadeTime</h3>
+            <p>Time in miliseconds of animation of buttons tooltips.</p>
+          </div>
+          <h2 id="doc-methods">Methods</h2>
           <div class="option">
             <div class="option-pars"><span>type:</span> function &nbsp; &nbsp; <span>default:</span> function() {}</div>
-            <h3 id="doc-options-onInit">onInit</h3>
+            <h3 id="doc-methods-onInit">onInit</h3>
             <p>This function is called after the initiation of the plugin. Takes no arguments.</p>
           </div>
           <div class="option">
             <div class="option-pars"><span>type:</span> function &nbsp; &nbsp; <span>default:</span> function() {}</div>
-            <h3 id="doc-options-onChange">onChange</h3>
+            <h3 id="doc-methods-onChange">onChange</h3>
             <p>This function is called when you change the cropped area of the image. The function takes parameters:</p>
             <ul>
               <li>x - X position of the cropped image on the upper left pixel.</li>
@@ -151,6 +179,27 @@
               <li>h - the height of the cropped piece of the picture.</li>
             </ul>
           </div>
+          <h2 id="doc-translate-options">Translate options</h2>
+          <p>
+            All options, prefixed with 'text', are options used to inform user, what this button do. Example, zooming option
+            or moving image to one of the corners.
+          </p>
+          <p>Full list of translate options with default values:</p>
+          <ul>
+            <li><strong>textBtnTipZoomIn</strong> - 'Zoom in'</li>
+            <li><strong>textBtnTipZoomOut</strong> - 'Zoom out'</li>
+            <li><strong>textBtnTipRTW</strong> - 'Resize to container width'</li>
+            <li><strong>textBtnTipRTH</strong> - 'Resize to container height'</li>
+            <li><strong>textBtnTipFPTL</strong> - 'Move image to Top Left Corner'</li>
+            <li><strong>textBtnTipFPTC</strong> - 'Move image to Top Center'</li>
+            <li><strong>textBtnTipFPTR</strong> - 'Move image to Top Right Corner'</li>
+            <li><strong>textBtnTipFPCL</strong> - 'Move image to Center Left'</li>
+            <li><strong>textBtnTipFPCC</strong> - 'Move image to Center of container'</li>
+            <li><strong>textBtnTipFPCR</strong> - 'Move image to Center Right'</li>
+            <li><strong>textBtnTipFPBL</strong> - 'Move image to Bottom Left Corner'</li>
+            <li><strong>textBtnTipFPBC</strong> - 'Move image to Bottom Center'</li>
+            <li><strong>textBtnTipFPBR</strong> - 'Move image to Bottom Right Corner'</li>
+          </ul>
         </div>
       </div>
     </div>
