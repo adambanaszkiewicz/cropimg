@@ -1,7 +1,7 @@
 /**
  * Available for use under the MIT License (http://en.wikipedia.org/wiki/MIT_License)
  * 
- * Copyright (c) 2013 by Adam Banaszkiewicz
+ * Copyright (c) 2014 by Adam Banaszkiewicz
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,8 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  * 
- * @version 0.1.0
- * @date    2014.06.01
+ * @version 0.1.1
+ * @date    2014.06.14
  * @author  Adam Banaszkiewicz
  */
 (function($){
