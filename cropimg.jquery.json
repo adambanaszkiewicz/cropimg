@@ -14,7 +14,7 @@
   "dependencies": {
     "jquery": ">=1.9.1"
   },
-  "keywords": ["cropimg","cropping","tool"],
+  "keywords": ["area" ,"cropping" ,"cropper" ,"crop", "cropimg", "select","tool"],
   "licenses": [
     {
       "type": "MIT",
