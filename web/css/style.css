@@ -34,9 +34,9 @@ footer {border-top:1px solid #cccccc;margin:40px 0px;padding:20px 0px;}
 footer p {color:#B5B5B5;font-size:12px;text-align:center;}
 .result-preview {margin:20px 0 0 0;padding-bottom:20px;}
 .result-preview table {border-spacing:0;display:none;}
-.result-preview table td {padding:2px 5px;}
+.result-preview table td {padding:2px 5px;font-size:14px;}
 .result-preview button {float:right;text-shadow:none;}
-.result-preview input {margin:0;height:30px;}
+.result-preview input {margin:0;height:30px;font-size:14px;}
 pre {font-size:12px;}
 .syntaxhighlighter,
 .syntaxhighlighter .line.alt2 {background-color:transparent !important;}
