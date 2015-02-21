@@ -35,7 +35,7 @@ footer p {color:#B5B5B5;font-size:12px;text-align:center;}
 .result-preview {margin:20px 0 0 0;padding-bottom:20px;}
 .result-preview table {border-spacing:0;display:none;}
 .result-preview table td {padding:2px 5px;}
-.result-preview button {float:right;}
+.result-preview button {float:right;text-shadow:none;}
 .result-preview input {margin:0;height:30px;}
 pre {font-size:12px;}
 .syntaxhighlighter,
