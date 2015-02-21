@@ -2,7 +2,7 @@
   "name": "cropimg",
   "title": "cropimg",
   "description": "Another, lightweight cropping tool, for jQuery.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "http://requtize.github.io/cropimg/",
   "demo": "http://requtize.github.io/cropimg/",
   "docs": "http://requtize.github.io/cropimg/documentation.html",
@@ -14,7 +14,7 @@
   "dependencies": {
     "jquery": ">=1.9.1"
   },
-  "keywords": ["cropimg","cropping","tool"],
+  "keywords": ["area" ,"cropping" ,"cropper" ,"crop", "cropimg", "select", "tool", "jquery-plugin"],
   "licenses": [
     {
       "type": "MIT",

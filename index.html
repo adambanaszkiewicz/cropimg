@@ -18,7 +18,7 @@
     <div class="row">
       <div class="large-5 columns">
         <div class="side">
-          <h1><a href="http://requtize.github.io/cropimg/">cropimg.jquery.js <small>v. 0.1.1</small></a></h1>
+          <h1><a href="http://requtize.github.io/cropimg/">cropimg.jquery.js <small>v. 0.1.2</small></a></h1>
           <p class="slogan">Another croping jQuery plugin.</p>
           <div class="big-buttons">
             <a href="https://github.com/requtize/cropimg">
@@ -55,6 +55,32 @@
           </p>
           <img src="web/img/cropimg.jpg" alt="crop img" class="cropimg" />
           <p class="image-copy">image taken from <a href="http://unsplash.com/" target="_blank">http://unsplash.com/</a></p>
+          <div class="result-preview">
+            <button type="button" class="button tiny">Show result values</button>
+            <table>
+              <tbody>
+                <tr>
+                  <td colspan="2">Now move and resize image.<br /><br /></td>
+                </tr>
+                <tr>
+                  <td>X coordinate:</td>
+                  <td><input type="text" name="x" id="x" value="0" /></td>
+                </tr>
+                <tr>
+                  <td>Y coordinate:</td>
+                  <td><input type="text" name="y" id="y" value="0" /></td>
+                </tr>
+                <tr>
+                  <td>Width:</td>
+                  <td><input type="text" name="w" id="w" value="0" /></td>
+                </tr>
+                <tr>
+                  <td>Height:</td>
+                  <td><input type="text" name="h" id="h" value="0" /></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <h2>Do i need anything else?</h2>
           <p>
             Yes. You need only include jQuery to your document in version 1.9 or higher. You can find it <a href="http://jquery.com/download/" target="_blank">HERE</a>.
@@ -74,6 +100,10 @@
       $('img.cropimg').cropimg({
         resultWidth:600,
         resultHeight:300
+      });
+
+      $('.result-preview button').click(function() {
+        $('.result-preview table').toggle();
       });
     });
     </script>

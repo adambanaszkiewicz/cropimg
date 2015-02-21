@@ -21,8 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  * 
- * @version 0.1.1
- * @date    2014.06.14
+ * @version 0.1.2
+ * @date    2015.02.21
  * @author  Adam Banaszkiewicz
  */
 (function($){
@@ -760,10 +760,12 @@
         {
           document.CI_MAIN_CONTAINER.mousewheel(function(e) {
             var type = e.deltaY == 1 ? 'in' : 'out';
-                        
+
             for(var i = 0; i < options.mouseWheelZoomTimes; i++)
               document.CI_ZOOMING.zoom(type);
-            
+
+            document.CI_MOVABLE.eventMouseUp();
+
             e.stopPropagation();
             e.preventDefault();
             return false;

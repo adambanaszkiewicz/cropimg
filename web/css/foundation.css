@@ -4228,7 +4228,7 @@ ul.off-canvas-list {
   .f-dropdown.large {
     max-width: 800px; }
 
-table {
+/*table {
   background: white;
   margin-bottom: 1.25rem;
   border: solid 1px #dddddd; }
@@ -4257,7 +4257,7 @@ table {
   table tr td,
   table tfoot tr td {
     display: table-cell;
-    line-height: 1.125rem; }
+    line-height: 1.125rem; }*/
 
 /* Standard Forms */
 form {
