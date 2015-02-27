@@ -257,6 +257,18 @@
      * @var jQuery
      */
     document.CI_IMAGE_CONTAINER_DATA = {width: -1};
+
+    /**
+     * Obiekt z aktualnie obliczonymi wartościami kadrowanego obrazka.
+     * 
+     * @var jQuery
+     */
+    document.CI_CURRENT_VARS = {
+      w: 0,
+      h: 0,
+      x: 0,
+      y: 0
+    };
     
     /**
      * Przechowuje czas w mikrosekundach wywołania pluginu. Potrzebne do
@@ -1012,40 +1024,44 @@
       update: function(x, y, w, h) {
         var prop  = document.CI_IMAGE_DATA.originalWidth / document.CI_IMAGE_DATA.width;
         
-        var valueX = $('#'+options.inputPrefix+'x').val();
+        var valueX = document.CI_CURRENT_VARS.x;
         
         if(x != undefined)      valueX = Math.ceil(prop * x);
         else if(valueX == '')   valueX = 0;
         
         x = valueX;
         $('#'+options.inputPrefix+'x').val(valueX);
+        document.CI_CURRENT_VARS.x = valueX;
         
         
-        var valueY = $('#'+options.inputPrefix+'y').val();
+        var valueY = document.CI_CURRENT_VARS.y;
         
         if(y != undefined)      valueY = Math.ceil(prop * y);
         else if(valueY == '')   valueY = 0;
         
         y = valueY;
         $('#'+options.inputPrefix+'y').val(valueY);
+        document.CI_CURRENT_VARS.y = valueY;
         
         
-        var valueW = $('#'+options.inputPrefix+'w').val();
+        var valueW = document.CI_CURRENT_VARS.w;
         
         if(w != undefined)      valueW = Math.ceil(prop * w)
         else if(valueW == '')   valueW = 0;
         
         w = valueW;
         $('#'+options.inputPrefix+'w').val(valueW);
+        document.CI_CURRENT_VARS.w = valueW;
         
         
-        var valueH = $('#'+options.inputPrefix+'h').val();
+        var valueH = document.CI_CURRENT_VARS.h;
         
         if(h != undefined)      valueH = Math.ceil(prop * h)
         else if(valueH == '')   valueH = 0;
         
         h = valueH;
         $('#'+options.inputPrefix+'h').val(valueH);
+        document.CI_CURRENT_VARS.h = valueH;
 
         options.onChange(x, y, w, h);
       }
