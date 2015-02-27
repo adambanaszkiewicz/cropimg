@@ -1010,44 +1010,43 @@
        * @return void
        */
       update: function(x, y, w, h) {
-        var value = '';
         var prop  = document.CI_IMAGE_DATA.originalWidth / document.CI_IMAGE_DATA.width;
         
-        value = $('#'+options.inputPrefix+'x').val();
+        var valueX = $('#'+options.inputPrefix+'x').val();
         
-        if(x != undefined)    value = Math.ceil(prop * x);
-        else if(value == '')  value = 0;
+        if(x != undefined)      valueX = Math.ceil(prop * x);
+        else if(valueX == '')   valueX = 0;
         
-        x = value;
-        $('#'+options.inputPrefix+'x').val(value);
-        
-        
-        value = $('#'+options.inputPrefix+'y').val();
-        
-        if(y != undefined)    value = Math.ceil(prop * y);
-        else if(value == '')  value = 0;
-        
-        y = value;
-        $('#'+options.inputPrefix+'y').val(value);
+        x = valueX;
+        $('#'+options.inputPrefix+'x').val(valueX);
         
         
-        value = $('#'+options.inputPrefix+'w').val();
+        var valueY = $('#'+options.inputPrefix+'y').val();
         
-        if(w != undefined)    value = Math.ceil(prop * w)
-        else if(value == '')  value = 0;
+        if(y != undefined)      valueY = Math.ceil(prop * y);
+        else if(valueY == '')   valueY = 0;
         
-        w = value;
-        $('#'+options.inputPrefix+'w').val(value);
+        y = valueY;
+        $('#'+options.inputPrefix+'y').val(valueY);
         
         
-        value = $('#'+options.inputPrefix+'h').val();
+        var valueW = $('#'+options.inputPrefix+'w').val();
         
-        if(h != undefined)    value = Math.ceil(prop * h)
-        else if(value == '')  value = 0;
+        if(w != undefined)      valueW = Math.ceil(prop * w)
+        else if(valueW == '')   valueW = 0;
         
-        h = value;
-        $('#'+options.inputPrefix+'h').val(value);
+        w = valueW;
+        $('#'+options.inputPrefix+'w').val(valueW);
         
+        
+        var valueH = $('#'+options.inputPrefix+'h').val();
+        
+        if(h != undefined)      valueH = Math.ceil(prop * h)
+        else if(valueH == '')   valueH = 0;
+        
+        h = valueH;
+        $('#'+options.inputPrefix+'h').val(valueH);
+
         options.onChange(x, y, w, h);
       }
     };
