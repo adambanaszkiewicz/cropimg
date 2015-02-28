@@ -265,6 +265,18 @@
      * @var integer
      */
     document.CI_MT = (new Date()).getTime();
+
+    /**
+     * Przechowuje aktualnie obliczone wartości kadrowanego zdjęcia
+     * 
+     * @type Object
+     */
+    document.CI_CURRENT_VARS = {
+      x: 0,
+      y: 0,
+      w: 0,
+      h: 0
+    };
     
     /**
      * Obiekt z metodami do rysowania narzędzi pluginu.
