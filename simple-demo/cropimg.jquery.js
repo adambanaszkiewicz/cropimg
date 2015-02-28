@@ -21,8 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  * 
- * @version 0.1.3
- * @date    2015.02.28
+ * @version 0.1.2
+ * @date    2015.02.21
  * @author  Adam Banaszkiewicz
  */
 (function($){
@@ -257,18 +257,6 @@
      * @var jQuery
      */
     document.CI_IMAGE_CONTAINER_DATA = {width: -1};
-
-    /**
-     * Obiekt z aktualnie obliczonymi wartościami kadrowanego obrazka.
-     * 
-     * @var jQuery
-     */
-    document.CI_CURRENT_VARS = {
-      w: 0,
-      h: 0,
-      x: 0,
-      y: 0
-    };
     
     /**
      * Przechowuje czas w mikrosekundach wywołania pluginu. Potrzebne do
@@ -592,8 +580,6 @@
         // Top left
         document.CI_IMAGE_CONTAINER.find('.ci-fixing-position.ci-fptl').mouseup(function() {
           document.CI_IMAGE.css({'top':'0px','left':'0px'});
-          document.CI_CURRENT_VARS.x = 0;
-          document.CI_CURRENT_VARS.y = 0;
           document.CI_CROPPING_RESULT.update(0, 0);
         });
         
@@ -601,8 +587,6 @@
         document.CI_IMAGE_CONTAINER.find('.ci-fixing-position.ci-fptc').mouseup(function() {        
           var left = -((document.CI_IMAGE_DATA.width / 2) - (document.CI_IMAGE_CONTAINER_DATA.width / 2));
           document.CI_IMAGE.css({'top':'0px','left':left+'px'});
-          document.CI_CURRENT_VARS.x = left;
-          document.CI_CURRENT_VARS.y = 0;
           document.CI_CROPPING_RESULT.update(left, 0);
         });
         
@@ -610,8 +594,6 @@
         document.CI_IMAGE_CONTAINER.find('.ci-fixing-position.ci-fptr').mouseup(function() {
           var left = -(document.CI_IMAGE_DATA.width - document.CI_IMAGE_CONTAINER_DATA.width);
           document.CI_IMAGE.css({'top':'0px','left':left+'px'});
-          document.CI_CURRENT_VARS.x = left;
-          document.CI_CURRENT_VARS.y = 0;
           document.CI_CROPPING_RESULT.update(left, 0);
         });
         
@@ -619,8 +601,6 @@
         document.CI_IMAGE_CONTAINER.find('.ci-fixing-position.ci-fpcl').mouseup(function() {
           var top = -((document.CI_IMAGE_DATA.height / 2) - (document.CI_IMAGE_CONTAINER_DATA.height / 2));
           document.CI_IMAGE.css({'top':top+'px','left':'0px'});
-          document.CI_CURRENT_VARS.x = 0;
-          document.CI_CURRENT_VARS.y = top;
           document.CI_CROPPING_RESULT.update(0, top);
         });
         
@@ -629,8 +609,6 @@
           var top   = -((document.CI_IMAGE_DATA.height / 2) - (document.CI_IMAGE_CONTAINER_DATA.height / 2));
           var left  = -((document.CI_IMAGE_DATA.width / 2) - (document.CI_IMAGE_CONTAINER_DATA.width / 2));
           document.CI_IMAGE.css({'top':top+'px','left':left+'px'});
-          document.CI_CURRENT_VARS.x = left;
-          document.CI_CURRENT_VARS.y = top;
           document.CI_CROPPING_RESULT.update(left, top);
         });
         
@@ -639,8 +617,6 @@
           var top   = -((document.CI_IMAGE_DATA.height / 2) - (document.CI_IMAGE_CONTAINER_DATA.height / 2));
           var left  = -(document.CI_IMAGE_DATA.width - document.CI_IMAGE_CONTAINER_DATA.width);
           document.CI_IMAGE.css({'top':top+'px','left':left+'px'});
-          document.CI_CURRENT_VARS.x = left;
-          document.CI_CURRENT_VARS.y = top;
           document.CI_CROPPING_RESULT.update(left, top);
         });
         
@@ -648,8 +624,6 @@
         document.CI_IMAGE_CONTAINER.find('.ci-fixing-position.ci-fpbl').mouseup(function() {
           var top = -(document.CI_IMAGE_DATA.height - document.CI_IMAGE_CONTAINER_DATA.height);
           document.CI_IMAGE.css({'top':top+'px','left':'0px'});
-          document.CI_CURRENT_VARS.x = 0;
-          document.CI_CURRENT_VARS.y = top;
           document.CI_CROPPING_RESULT.update(0, top);
         });
         
@@ -658,8 +632,6 @@
           var top   = -(document.CI_IMAGE_DATA.height - document.CI_IMAGE_CONTAINER_DATA.height);
           var left  = -((document.CI_IMAGE_DATA.width / 2) - (document.CI_IMAGE_CONTAINER_DATA.width / 2));
           document.CI_IMAGE.css({'top':top+'px','left':left+'px'});
-          document.CI_CURRENT_VARS.x = left;
-          document.CI_CURRENT_VARS.y = top;
           document.CI_CROPPING_RESULT.update(left, top);
         });
         
@@ -668,8 +640,6 @@
           var top   = -(document.CI_IMAGE_DATA.height - document.CI_IMAGE_CONTAINER_DATA.height);
           var left  = -(document.CI_IMAGE_DATA.width - document.CI_IMAGE_CONTAINER_DATA.width);
           document.CI_IMAGE.css({'top':top+'px','left':left+'px'});
-          document.CI_CURRENT_VARS.x = left;
-          document.CI_CURRENT_VARS.y = top;
           document.CI_CROPPING_RESULT.update(left, top);
         });
       },
@@ -1040,47 +1010,44 @@
        * @return void
        */
       update: function(x, y, w, h) {
+        var value = '';
         var prop  = document.CI_IMAGE_DATA.originalWidth / document.CI_IMAGE_DATA.width;
         
-        var valueX = document.CI_CURRENT_VARS.x;
+        value = $('#'+options.inputPrefix+'x').val();
         
-        if(x != undefined)      valueX = Math.ceil(prop * x);
-        else if(valueX == '')   valueX = 0;
+        if(x != undefined)    value = Math.ceil(prop * x);
+        else if(value == '')  value = 0;
         
-        x = valueX;
-        $('#'+options.inputPrefix+'x').val(valueX);
-        document.CI_CURRENT_VARS.x = valueX;
-        
-        
-        var valueY = document.CI_CURRENT_VARS.y;
-        
-        if(y != undefined)      valueY = Math.ceil(prop * y);
-        else if(valueY == '')   valueY = 0;
-        
-        y = valueY;
-        $('#'+options.inputPrefix+'y').val(valueY);
-        document.CI_CURRENT_VARS.y = valueY;
+        x = value;
+        $('#'+options.inputPrefix+'x').val(value);
         
         
-        var valueW = document.CI_CURRENT_VARS.w;
+        value = $('#'+options.inputPrefix+'y').val();
         
-        if(w != undefined)      valueW = Math.ceil(prop * w)
-        else if(valueW == '')   valueW = 0;
+        if(y != undefined)    value = Math.ceil(prop * y);
+        else if(value == '')  value = 0;
         
-        w = valueW;
-        $('#'+options.inputPrefix+'w').val(valueW);
-        document.CI_CURRENT_VARS.w = valueW;
+        y = value;
+        $('#'+options.inputPrefix+'y').val(value);
         
         
-        var valueH = document.CI_CURRENT_VARS.h;
+        value = $('#'+options.inputPrefix+'w').val();
         
-        if(h != undefined)      valueH = Math.ceil(prop * h)
-        else if(valueH == '')   valueH = 0;
+        if(w != undefined)    value = Math.ceil(prop * w)
+        else if(value == '')  value = 0;
         
-        h = valueH;
-        $('#'+options.inputPrefix+'h').val(valueH);
-        document.CI_CURRENT_VARS.h = valueH;
-
+        w = value;
+        $('#'+options.inputPrefix+'w').val(value);
+        
+        
+        value = $('#'+options.inputPrefix+'h').val();
+        
+        if(h != undefined)    value = Math.ceil(prop * h)
+        else if(value == '')  value = 0;
+        
+        h = value;
+        $('#'+options.inputPrefix+'h').val(value);
+        
         options.onChange(x, y, w, h);
       }
     };

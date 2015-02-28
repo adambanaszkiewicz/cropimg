@@ -2,7 +2,7 @@
   "name": "cropimg",
   "title": "cropimg",
   "description": "Another, lightweight cropping tool, for jQuery.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "homepage": "http://requtize.github.io/cropimg/",
   "demo": "http://requtize.github.io/cropimg/",
   "docs": "http://requtize.github.io/cropimg/documentation.html",
