@@ -21,8 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  * 
- * @version 0.1.2
- * @date    2015.02.21
+ * @version 0.1.3
+ * @date    2015.02.28
  * @author  Adam Banaszkiewicz
  */
 (function($){
@@ -592,6 +592,8 @@
         // Top left
         document.CI_IMAGE_CONTAINER.find('.ci-fixing-position.ci-fptl').mouseup(function() {
           document.CI_IMAGE.css({'top':'0px','left':'0px'});
+          document.CI_CURRENT_VARS.x = 0;
+          document.CI_CURRENT_VARS.y = 0;
           document.CI_CROPPING_RESULT.update(0, 0);
         });
         
@@ -599,6 +601,8 @@
         document.CI_IMAGE_CONTAINER.find('.ci-fixing-position.ci-fptc').mouseup(function() {        
           var left = -((document.CI_IMAGE_DATA.width / 2) - (document.CI_IMAGE_CONTAINER_DATA.width / 2));
           document.CI_IMAGE.css({'top':'0px','left':left+'px'});
+          document.CI_CURRENT_VARS.x = left;
+          document.CI_CURRENT_VARS.y = 0;
           document.CI_CROPPING_RESULT.update(left, 0);
         });
         
@@ -606,6 +610,8 @@
         document.CI_IMAGE_CONTAINER.find('.ci-fixing-position.ci-fptr').mouseup(function() {
           var left = -(document.CI_IMAGE_DATA.width - document.CI_IMAGE_CONTAINER_DATA.width);
           document.CI_IMAGE.css({'top':'0px','left':left+'px'});
+          document.CI_CURRENT_VARS.x = left;
+          document.CI_CURRENT_VARS.y = 0;
           document.CI_CROPPING_RESULT.update(left, 0);
         });
         
@@ -613,6 +619,8 @@
         document.CI_IMAGE_CONTAINER.find('.ci-fixing-position.ci-fpcl').mouseup(function() {
           var top = -((document.CI_IMAGE_DATA.height / 2) - (document.CI_IMAGE_CONTAINER_DATA.height / 2));
           document.CI_IMAGE.css({'top':top+'px','left':'0px'});
+          document.CI_CURRENT_VARS.x = 0;
+          document.CI_CURRENT_VARS.y = top;
           document.CI_CROPPING_RESULT.update(0, top);
         });
         
@@ -621,6 +629,8 @@
           var top   = -((document.CI_IMAGE_DATA.height / 2) - (document.CI_IMAGE_CONTAINER_DATA.height / 2));
           var left  = -((document.CI_IMAGE_DATA.width / 2) - (document.CI_IMAGE_CONTAINER_DATA.width / 2));
           document.CI_IMAGE.css({'top':top+'px','left':left+'px'});
+          document.CI_CURRENT_VARS.x = left;
+          document.CI_CURRENT_VARS.y = top;
           document.CI_CROPPING_RESULT.update(left, top);
         });
         
@@ -629,6 +639,8 @@
           var top   = -((document.CI_IMAGE_DATA.height / 2) - (document.CI_IMAGE_CONTAINER_DATA.height / 2));
           var left  = -(document.CI_IMAGE_DATA.width - document.CI_IMAGE_CONTAINER_DATA.width);
           document.CI_IMAGE.css({'top':top+'px','left':left+'px'});
+          document.CI_CURRENT_VARS.x = left;
+          document.CI_CURRENT_VARS.y = top;
           document.CI_CROPPING_RESULT.update(left, top);
         });
         
@@ -636,6 +648,8 @@
         document.CI_IMAGE_CONTAINER.find('.ci-fixing-position.ci-fpbl').mouseup(function() {
           var top = -(document.CI_IMAGE_DATA.height - document.CI_IMAGE_CONTAINER_DATA.height);
           document.CI_IMAGE.css({'top':top+'px','left':'0px'});
+          document.CI_CURRENT_VARS.x = 0;
+          document.CI_CURRENT_VARS.y = top;
           document.CI_CROPPING_RESULT.update(0, top);
         });
         
@@ -644,6 +658,8 @@
           var top   = -(document.CI_IMAGE_DATA.height - document.CI_IMAGE_CONTAINER_DATA.height);
           var left  = -((document.CI_IMAGE_DATA.width / 2) - (document.CI_IMAGE_CONTAINER_DATA.width / 2));
           document.CI_IMAGE.css({'top':top+'px','left':left+'px'});
+          document.CI_CURRENT_VARS.x = left;
+          document.CI_CURRENT_VARS.y = top;
           document.CI_CROPPING_RESULT.update(left, top);
         });
         
@@ -652,6 +668,8 @@
           var top   = -(document.CI_IMAGE_DATA.height - document.CI_IMAGE_CONTAINER_DATA.height);
           var left  = -(document.CI_IMAGE_DATA.width - document.CI_IMAGE_CONTAINER_DATA.width);
           document.CI_IMAGE.css({'top':top+'px','left':left+'px'});
+          document.CI_CURRENT_VARS.x = left;
+          document.CI_CURRENT_VARS.y = top;
           document.CI_CROPPING_RESULT.update(left, top);
         });
       },
