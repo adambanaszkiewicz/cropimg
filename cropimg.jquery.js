@@ -21,8 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  * 
- * @version 0.2.0
- * @date    2015.05.01
+ * @version 0.2.1
+ * @date    2015.06.05
  * @author  Adam Banaszkiewicz
  */
 (function($){
@@ -72,6 +72,13 @@
        * @var integer
        */
       mouseWheelZoomTimes: 10,
+
+      /**
+       * O jaką część całości ma odbywać się zoomowanie.
+       * 
+       * @type integer
+       */
+      zoomStep: 1,
       
       /**
        * Czy pokazywać tooltipy na buttonach?
@@ -333,8 +340,8 @@
        */ 
       this.drawZoomingButtons = function() {
         this.main.container.find('.ci-tool.ci-zooming')
-          .append($('<a />', {'title':this.main.options.textBtnTipZoomIn,'href':'#','class':'ci-button ci-tool-zoomin'}).click(function(){return false;}))
-          .append($('<a />', {'title':this.main.options.textBtnTipZoomOut,'href':'#','class':'ci-button ci-tool-zoomout'}).click(function(){return false;}));
+          .append($('<span />', {'title':this.main.options.textBtnTipZoomIn,'href':'#','class':'ci-button ci-tool-zoomin'}).click(function(){return false;}))
+          .append($('<span />', {'title':this.main.options.textBtnTipZoomOut,'href':'#','class':'ci-button ci-tool-zoomout'}).click(function(){return false;}));
       },
 
       /**
@@ -344,15 +351,15 @@
        */
       this.drawFixingPositionButtons = function() {
         this.main.imageContainer
-          .append($('<a />', {'title':this.main.options.textBtnTipFPTL,'href':'#','class':'ci-fixing-position ci-fptl'}).click(function(){return false;}))
-          .append($('<a />', {'title':this.main.options.textBtnTipFPTC,'href':'#','class':'ci-fixing-position ci-fptc'}).click(function(){return false;}))
-          .append($('<a />', {'title':this.main.options.textBtnTipFPTR,'href':'#','class':'ci-fixing-position ci-fptr'}).click(function(){return false;}))
-          .append($('<a />', {'title':this.main.options.textBtnTipFPCL,'href':'#','class':'ci-fixing-position ci-fpcl'}).click(function(){return false;}))
-          .append($('<a />', {'title':this.main.options.textBtnTipFPCC,'href':'#','class':'ci-fixing-position ci-fpcc'}).click(function(){return false;}))
-          .append($('<a />', {'title':this.main.options.textBtnTipFPCR,'href':'#','class':'ci-fixing-position ci-fpcr'}).click(function(){return false;}))
-          .append($('<a />', {'title':this.main.options.textBtnTipFPBL,'href':'#','class':'ci-fixing-position ci-fpbl'}).click(function(){return false;}))
-          .append($('<a />', {'title':this.main.options.textBtnTipFPBC,'href':'#','class':'ci-fixing-position ci-fpbc'}).click(function(){return false;}))
-          .append($('<a />', {'title':this.main.options.textBtnTipFPBR,'href':'#','class':'ci-fixing-position ci-fpbr'}).click(function(){return false;}));
+          .append($('<span />', {'title':this.main.options.textBtnTipFPTL,'href':'#','class':'ci-fixing-position ci-fptl'}).click(function(){return false;}))
+          .append($('<span />', {'title':this.main.options.textBtnTipFPTC,'href':'#','class':'ci-fixing-position ci-fptc'}).click(function(){return false;}))
+          .append($('<span />', {'title':this.main.options.textBtnTipFPTR,'href':'#','class':'ci-fixing-position ci-fptr'}).click(function(){return false;}))
+          .append($('<span />', {'title':this.main.options.textBtnTipFPCL,'href':'#','class':'ci-fixing-position ci-fpcl'}).click(function(){return false;}))
+          .append($('<span />', {'title':this.main.options.textBtnTipFPCC,'href':'#','class':'ci-fixing-position ci-fpcc'}).click(function(){return false;}))
+          .append($('<span />', {'title':this.main.options.textBtnTipFPCR,'href':'#','class':'ci-fixing-position ci-fpcr'}).click(function(){return false;}))
+          .append($('<span />', {'title':this.main.options.textBtnTipFPBL,'href':'#','class':'ci-fixing-position ci-fpbl'}).click(function(){return false;}))
+          .append($('<span />', {'title':this.main.options.textBtnTipFPBC,'href':'#','class':'ci-fixing-position ci-fpbc'}).click(function(){return false;}))
+          .append($('<span />', {'title':this.main.options.textBtnTipFPBR,'href':'#','class':'ci-fixing-position ci-fpbr'}).click(function(){return false;}));
       },
 
       /**
@@ -362,8 +369,8 @@
        */
       this.drawFixingSizeButtons = function() {
         this.main.container.find('.ci-tool.ci-zooming')
-          .append($('<a />', {'title':this.main.options.textBtnTipRTW,'href':'#','class':'ci-fixing-size ci-fsw'}).click(function(){return false;}))
-          .append($('<a />', {'title':this.main.options.textBtnTipRTH,'href':'#','class':'ci-fixing-size ci-fsh'}).click(function(){return false;}));
+          .append($('<span />', {'title':this.main.options.textBtnTipRTW,'href':'#','class':'ci-fixing-size ci-fsw'}).click(function(){return false;}))
+          .append($('<span />', {'title':this.main.options.textBtnTipRTH,'href':'#','class':'ci-fixing-size ci-fsh'}).click(function(){return false;}));
       },
 
       /**
@@ -373,8 +380,8 @@
        */
       this.drawFixingSizeButtons = function() {
         this.main.container.find('.ci-tool.ci-zooming')
-          .append($('<a />', {'title':this.main.options.textBtnTipRTW,'href':'#','class':'ci-fixing-size ci-fsw'}).click(function(){return false;}))
-          .append($('<a />', {'title':this.main.options.textBtnTipRTH,'href':'#','class':'ci-fixing-size ci-fsh'}).click(function(){return false;}));
+          .append($('<span />', {'title':this.main.options.textBtnTipRTW,'href':'#','class':'ci-fixing-size ci-fsw'}).click(function(){return false;}))
+          .append($('<span />', {'title':this.main.options.textBtnTipRTH,'href':'#','class':'ci-fixing-size ci-fsh'}).click(function(){return false;}));
       },
 
       this.onResize = function(self, e) {
@@ -986,9 +993,9 @@
       this.zoom = function(type) {
         // Zmieniamy wielkość procent w zależności od tego, czy przybliżamy czy oddalamy
         if(type == 'in')
-          this.main.imageData.proportions = (parseFloat(this.main.imageData.proportions) + 0.001).toFixed(3);
+          this.main.imageData.proportions = (parseFloat(this.main.imageData.proportions) + (this.main.options.zoomStep / 1000)).toFixed(4);
         else
-          this.main.imageData.proportions = (parseFloat(this.main.imageData.proportions) - 0.001).toFixed(3);
+          this.main.imageData.proportions = (parseFloat(this.main.imageData.proportions) - (this.main.options.zoomStep / 1000)).toFixed(4);
         
         // Maksymalne przybliżenie to 200%
         if(this.main.imageData.proportions >= 2)

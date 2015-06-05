@@ -4,11 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>cropimg.jquery.js by requtize</title>
-    <link rel="stylesheet" type="text/css" href="cropimg.css" />
+    <link rel="stylesheet" type="text/css" href="../resource/cropimg.css" />
     <link rel="stylesheet" type="text/css" href="font-awesome.min.css" />
     <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="jquery.mousewheel.js"></script>
-    <script type="text/javascript" src="cropimg.jquery.js"></script>
+    <script type="text/javascript" src="../cropimg.jquery.js"></script>
   </head>
   <body>
     <img src="cropimg.jpg" alt="crop img" class="cropimg" />
@@ -16,7 +16,15 @@
     $(document).ready(function() {
       $('img.cropimg').cropimg({
         resultWidth:600,
-        resultHeight:300
+        resultHeight:300,
+        onChange: function() {
+          $('#preview-info').hide();
+          $('#preview-container').show();
+        }
+      });
+
+      $('.btn-crop').click(function() {
+        $('#preview-image').attr('src', 'script.php?w=' + $('#w').val() + '&h=' + $('#h').val() + '&x=' + $('#x').val() + '&y=' + $('#y').val() + '&ts=' + (new Date).getTime());
       });
     });
     </script>
@@ -42,6 +50,16 @@
           </tr>
         </tbody>
       </table>
+      <h2>Live Result Image (cropped in PHP)</h2>
+      <div id="preview-info">
+        <p style="font-weight:bold;text-align:center">Change image position or image zoom to create a live preview.</p>
+      </div>
+      <div id="preview-container" style="display:none">
+        <p>Now you can: <button type="button" class="btn-crop">Crop this image</button> !</p>
+        <br />
+        <img id="preview-image" src="http://placehold.it/600x300?text=Click button above" alt="Click button above" />
+        <p style="fonr-size:12px;font-family:Arial, tahoma, verdana;font-style:italic">Black places around image are coused by moving image from bounds of crop area.</p>
+      </div>
     </div>
   <body>
 </html>
