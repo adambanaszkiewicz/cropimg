@@ -26,7 +26,7 @@
     <div class="row">
       <div class="large-5 columns">
         <div class="side">
-          <h1><a href="http://requtize.github.io/cropimg/">cropimg.jquery.js <small>v. 0.2.0</small></a></h1>
+          <h1><a href="http://requtize.github.io/cropimg/">cropimg.jquery.js <small>v. 0.2.1</small></a></h1>
           <p class="slogan">Another croping jQuery plugin.</p>
           <div class="big-buttons">
             <a href="http://requtize.github.io/cropimg/" class="obverse">
@@ -46,6 +46,7 @@
                 <li><a href="#doc-options-inputPrefix"><span class="icon-angle-right"></span> inputPrefix</a></li>
                 <li><a href="#doc-options-zoomDelay"><span class="icon-angle-right"></span> zoomDelay</a></li>
                 <li><a href="#doc-options-mouseWheelZoomTimes"><span class="icon-angle-right"></span> mouseWheelZoomTimes</a></li>
+                <li><a href="#doc-options-zoomStep"><span class="icon-angle-right"></span> zoomStep</a></li>
                 <li><a href="#doc-options-showBtnTips"><span class="icon-angle-right"></span> showBtnTips</a></li>
                 <li><a href="#doc-options-btnTipsFadeTime"><span class="icon-angle-right"></span> btnTipsFadeTime</a></li>
               </ul>
@@ -89,6 +90,7 @@
     inputPrefix:        'ci-',
     zoomDelay:          400,
     mouseWheelZoomTimes:10,
+    zoomStep:           1,
     showBtnTips:        true,
     btnTipsFadeTime:    100,
     textBtnTipZoomIn:   'Zoom in',
@@ -154,6 +156,11 @@
             <p>Define count of clicks on one of zooming buttons (in or out), when user scroll on zooming area.</p>
             <p>Example: one mouse scroll = 10 clicks on Zoom in button.</p>
             <p>Work only if <a href="https://github.com/brandonaaron/jquery-mousewheel" target="_blank">jquery.mousewheel.js</a> script is included.</p>
+          </div>
+          <div class="option">
+            <div class="option-pars"><span>type:</span> integer &nbsp; &nbsp; <span>default:</span> 1</div>
+            <h3 id="doc-options-zoomStep">zoomStep</h3>
+            <p>Define how fast zooming should work. Higher value means faster zooming. Default value is 1, lowest value is greater than 0.</p>
           </div>
           <div class="option">
             <div class="option-pars"><span>type:</span> boolean &nbsp; &nbsp; <span>default:</span> true</div>
