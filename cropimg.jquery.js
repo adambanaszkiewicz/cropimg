@@ -21,11 +21,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  * 
- * @version 0.2.1
- * @date    2015.06.05
+ * @version 0.3.0
+ * @date    2015.08.09
  * @author  Adam Banaszkiewicz
  */
 (function($){
+  /**
+   * Zwraca obiekt z szerokością strony.
+   * 
+   * @result object
+   */
+  document.getWindowWidth = function() {
+    if( typeof( window.innerWidth ) == 'number' )
+    {
+      return window.innerWidth;
+    }
+    else if(document.documentElement && (document.documentElement.clientWidth || document.documentElement.clientHeight))
+    {
+      return document.documentElement.clientWidth;
+    }
+    else if(document.body && (document.body.clientWidth || document.body.clientHeight))
+    {
+      return document.body.clientWidth;
+    }
+    
+    return 1280;
+  };
+
   $.fn.cropimg = function(options) {
     options = $.extend({
       /**
@@ -199,28 +221,6 @@
        */
       onChange: function(w, h, x, y, img) {}
     }, options);
-    
-    /**
-     * Zwraca obiekt z szerokością strony.
-     * 
-     * @result object
-     */
-    document.getWindowWidth = function() {
-      if( typeof( window.innerWidth ) == 'number' )
-      {
-        return window.innerWidth;
-      }
-      else if(document.documentElement && (document.documentElement.clientWidth || document.documentElement.clientHeight))
-      {
-        return document.documentElement.clientWidth;
-      }
-      else if(document.body && (document.body.clientWidth || document.body.clientHeight))
-      {
-        return document.body.clientWidth;
-      }
-      
-      return 1280;
-    };
 
     var CI_Main = function(image, options) {
       this.options = options;
@@ -288,6 +288,7 @@
       this.Movable = null;
       this.Zooming = null;
       this.CroppingResult = null;
+      this.Reset = null;
     };
 
     /**
@@ -1192,6 +1193,21 @@
       }
     };
 
+    /**
+     * Resetuje obiekt pluginu i zostawia sam obrazek usuwając kod HTML.
+     */
+    var CI_RESET = function(main) {
+      this.main = main;
+
+      this.reset = function() {
+        var img = this.main.image.clone().removeAttr('style');
+
+        this.main.container.replaceWith(img);
+
+        img.data('cropimg', null);
+      };
+    }
+
     
     return this.each(function() {
       var Main = new CI_Main($(this), options);
@@ -1200,11 +1216,14 @@
       Main.Movable = new CI_MOVABLE(Main);
       Main.Zooming = new CI_ZOOMING(Main);
       Main.CroppingResult = new CI_CROPPING_RESULT(Main);
+      Main.Reset = new CI_RESET(Main);
 
       Main.ToolDrawer.draw();
       Main.BtnTips.init();
       Main.Movable.init();
       Main.Zooming.init();
+
+      $(this).data('cropimg', Main.Reset);
       
       $(window).trigger('resize');
       
