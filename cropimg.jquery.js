@@ -108,6 +108,27 @@
        * @var boolean
        */
       showBtnTips: true,
+
+      /**
+       * Display zooming buttons?
+       * 
+       * @var boolean
+       */
+      displayZoomingButtons: true,
+
+      /**
+       * Display fixing positions buttons?
+       * 
+       * @var boolean
+       */
+      displayFixingPositionsButtons: true,
+
+      /**
+       * Display fixing size buttons?
+       * 
+       * @var boolean
+       */
+      displayFixingSizeButtons: true,
       
       /**
        * Czas animacji pokazywania i ukrywania tooltipów.
@@ -303,11 +324,17 @@
       this.draw = function() {
         this.drawContainers();
         
-        this.drawZoomingButtons();
+        if (this.main.options.displayZoomingButtons) {
+          this.drawZoomingButtons();  
+        }
         
-        this.drawFixingPositionButtons();
-        
-        this.drawFixingSizeButtons();
+        if (this.main.options.displayFixingPositionsButtons) {
+          this.drawFixingPositionButtons();  
+        }
+
+        if (this.main.options.displayFixingSizeButtons) {
+          this.drawFixingSizeButtons();  
+        }
 
         var self = this;
         
