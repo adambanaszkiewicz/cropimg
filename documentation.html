@@ -36,7 +36,7 @@
             </a>
           </div>
           <ul class="menu">
-            <li><a href="#doc-basic-usage">Basic usage</a></li>     
+            <li><a href="#doc-basic-usage">Basic usage</a></li>
             <li><a href="#doc-full-usage">Full usage</a></li>
             <li><a href="#doc-options">Options</a>
               <ul>
@@ -47,6 +47,9 @@
                 <li><a href="#doc-options-zoomDelay"><span class="icon-angle-right"></span> zoomDelay</a></li>
                 <li><a href="#doc-options-mouseWheelZoomTimes"><span class="icon-angle-right"></span> mouseWheelZoomTimes</a></li>
                 <li><a href="#doc-options-zoomStep"><span class="icon-angle-right"></span> zoomStep</a></li>
+                <li><a href="#doc-options-displayZoomingButtons"><span class="icon-angle-right"></span> displayZoomingButtons</a></li>
+                <li><a href="#doc-options-displayFixingPositionsButtons"><span class="icon-angle-right"></span> displayFixingPositionsButtons</a></li>
+                <li><a href="#doc-options-displayFixingSizeButtons"><span class="icon-angle-right"></span> displayFixingSizeButtons</a></li>
                 <li><a href="#doc-options-showBtnTips"><span class="icon-angle-right"></span> showBtnTips</a></li>
                 <li><a href="#doc-options-btnTipsFadeTime"><span class="icon-angle-right"></span> btnTipsFadeTime</a></li>
               </ul>
@@ -85,28 +88,31 @@
           <p>Example of full usage of options.</p>
           <pre class="brush: javascript">$(document).ready(function() {
   $('img.my-image').cropimg({
-    maxContainerWidth:  200,
-    resultWidth:        300,
-    resultHeight:       200,
-    inputPrefix:        'ci-',
-    zoomDelay:          400,
-    mouseWheelZoomTimes:10,
-    zoomStep:           1,
-    showBtnTips:        true,
-    btnTipsFadeTime:    100,
-    textBtnTipZoomIn:   'Zoom in',
-    textBtnTipZoomOut:  'Zoom out',
-    textBtnTipRTW:      'Resize to container width',
-    textBtnTipRTH:      'Resize to container height',
-    textBtnTipFPTL:     'Move image to Top Left Corner',
-    textBtnTipFPTC:     'Move image to Top Center',
-    textBtnTipFPTR:     'Move image to Top Right Corner',
-    textBtnTipFPCL:     'Move image to Center Left',
-    textBtnTipFPCC:     'Move image to Center of container',
-    textBtnTipFPCR:     'Move image to Center Right',
-    textBtnTipFPBL:     'Move image to Bottom Left Corner',
-    textBtnTipFPBC:     'Move image to Bottom Center',
-    textBtnTipFPBR:     'Move image to Bottom Right Corner',
+    maxContainerWidth:             200,
+    resultWidth:                   300,
+    resultHeight:                  200,
+    inputPrefix:                   'ci-',
+    zoomDelay:                     400,
+    mouseWheelZoomTimes:           10,
+    zoomStep:                      1,
+    displayZoomingButtons:         true,
+    displayFixingPositionsButtons: true,
+    displayFixingSizeButtons:      true,
+    showBtnTips:                   true,
+    btnTipsFadeTime:               100,
+    textBtnTipZoomIn:              'Zoom in',
+    textBtnTipZoomOut:             'Zoom out',
+    textBtnTipRTW:                 'Resize to container width',
+    textBtnTipRTH:                 'Resize to container height',
+    textBtnTipFPTL:                'Move image to Top Left Corner',
+    textBtnTipFPTC:                'Move image to Top Center',
+    textBtnTipFPTR:                'Move image to Top Right Corner',
+    textBtnTipFPCL:                'Move image to Center Left',
+    textBtnTipFPCC:                'Move image to Center of container',
+    textBtnTipFPCR:                'Move image to Center Right',
+    textBtnTipFPBL:                'Move image to Bottom Left Corner',
+    textBtnTipFPBC:                'Move image to Bottom Center',
+    textBtnTipFPBR:                'Move image to Bottom Right Corner',
     onInit: function() {
       alert('cropimg init!');
     },
@@ -162,6 +168,21 @@
             <div class="option-pars"><span>type:</span> integer &nbsp; &nbsp; <span>default:</span> 1</div>
             <h3 id="doc-options-zoomStep">zoomStep</h3>
             <p>Define how fast zooming should work. Higher value means faster zooming. Default value is 1, lowest value is greater than 0.</p>
+          </div>
+          <div class="option">
+            <div class="option-pars"><span>type:</span> boolean &nbsp; &nbsp; <span>default:</span> true</div>
+            <h3 id="doc-options-displayZoomingButtons">displayZoomingButtons</h3>
+            <p>If true, zooming buttons will be displayed.</p>
+          </div>
+          <div class="option">
+            <div class="option-pars"><span>type:</span> boolean &nbsp; &nbsp; <span>default:</span> true</div>
+            <h3 id="doc-options-displayFixingPositionsButtons">displayFixingPositionsButtons</h3>
+            <p>If true, position control buttons will be displayed.</p>
+          </div>
+          <div class="option">
+            <div class="option-pars"><span>type:</span> boolean &nbsp; &nbsp; <span>default:</span> true</div>
+            <h3 id="doc-options-displayFixingSizeButtons">displayFixingSizeButtons</h3>
+            <p>If true, size control buttons will be displayed.</p>
           </div>
           <div class="option">
             <div class="option-pars"><span>type:</span> boolean &nbsp; &nbsp; <span>default:</span> true</div>
