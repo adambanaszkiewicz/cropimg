@@ -21,8 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  * 
- * @version 0.3.0
- * @date    2015.08.09
+ * @version 0.3.1
+ * @date    2015.12.14
  * @author  Adam Banaszkiewicz
  */
 (function($){
