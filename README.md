@@ -25,3 +25,8 @@ What you need, to work with cropimg?
 
 ### License
 This code is licensed under MIT License.
+
+### Thanks
+Thank you, for create pull requests and develop this plugin.
+
+[@xthiago (pull 14) - Add ability to hide buttons groups separately](https://github.com/requtize/cropimg/pull/13)
